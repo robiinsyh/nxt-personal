@@ -1,0 +1,71 @@
+name: Sync Nextcloud Release
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # cek setiap 6 jam
+  workflow_dispatch:        # bisa jalankan manual
+
+jobs:
+  update-nextcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get current release version
+        id: current
+        run: |
+          if [ -f VERSION ]; then
+            echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
+          else
+            echo "version=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get latest Nextcloud release
+        id: latest
+        run: |
+          LATEST=$(curl -s https://download.nextcloud.com/server/releases/ | \
+                   grep -oP "nextcloud-\K[0-9]+\.[0-9]+\.[0-9]+(?=\.zip)" | \
+                   sort -V | tail -n 1)
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        id: compare
+        run: |
+          if [ "${{ steps.latest.outputs.version }}" = "${{ steps.current.outputs.version }}" ]; then
+            echo "update_needed=false" >> $GITHUB_OUTPUT
+          else
+            echo "update_needed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if already latest
+        if: steps.compare.outputs.update_needed == 'false'
+        run: echo "Already latest version. Skipping update."
+
+      - name: Download Nextcloud Release ZIP
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          VERSION=${{ steps.latest.outputs.version }}
+          wget https://download.nextcloud.com/server/releases/nextcloud-$VERSION.zip
+          unzip nextcloud-$VERSION.zip -d extracted
+          rm nextcloud-$VERSION.zip
+
+      - name: Replace repository contents
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          rm -rf ./* .github  # hapus semua kecuali workflows
+          mv extracted/nextcloud/* .
+          rm -rf extracted
+          echo "${{ steps.latest.outputs.version }}" > VERSION
+
+      - name: Commit & Push Update
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          git config --global user.name "robiinsyh"
+          git config --global user.email "robbysandega5@gmail.com"
+          git add .
+          git commit -m "Update Nextcloud to version ${{ steps.latest.outputs.version }}"
+          git push
