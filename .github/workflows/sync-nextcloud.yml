@@ -57,10 +57,12 @@ jobs:
         if: steps.compare.outputs.update_needed == 'true'
         run: |
           rm -rf ./* .github  # hapus semua kecuali workflows
-          mv extracted/nextcloud/* .
+          TARGET_DIR=$(find extracted -maxdepth 1 -type d -name "nextcloud*" | head -n 1)
+          echo "Using extracted directory: $TARGET_DIR"
+          mv "$TARGET_DIR"/* .
           rm -rf extracted
-          echo "${{ steps.latest.outputs.version }}" > VERSION
-
+          echo "${{ steps.latest.outputs.version }}" > VERSION  
+  
       - name: Commit & Push Update
         if: steps.compare.outputs.update_needed == 'true'
         run: |
