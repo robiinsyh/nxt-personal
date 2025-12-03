@@ -41,18 +41,6 @@ jobs:
             echo "update_needed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Stop if already latest
-        if: steps.compare.outputs.update_needed == 'false'
-        run: echo "Already latest version. Skipping update."
-
-      - name: Download Nextcloud Release ZIP
-        if: steps.compare.outputs.update_needed == 'true'
-        run: |
-          VERSION=${{ steps.latest.outputs.version }}
-          wget https://download.nextcloud.com/server/releases/nextcloud-$VERSION.zip
-          unzip nextcloud-$VERSION.zip -d extracted
-          rm nextcloud-$VERSION.zip
-
       - name: Replace repository contents
         if: steps.compare.outputs.update_needed == 'true'
         run: |
@@ -66,11 +54,11 @@ jobs:
             exit 1
           fi
 
-          # Cari folder nextcloud-*
-          TARGET_DIR=$(find "$ROOT_DIR/extracted" -maxdepth 1 -type d -name "nextcloud-*" | head -n 1)
+          # Cari folder nextcloud (hasil unzip release ZIP)
+          TARGET_DIR=$(find "$ROOT_DIR/extracted" -maxdepth 1 -type d -name "nextcloud" | head -n 1)
 
           if [ -z "$TARGET_DIR" ]; then
-            echo "ERROR: Folder nextcloud-* tidak ditemukan di dalam extracted/"
+            echo "ERROR: Folder 'nextcloud' tidak ditemukan di dalam extracted/"
             exit 1
           fi
 
@@ -79,14 +67,15 @@ jobs:
           # Hapus semua isi repo kecuali .github
           find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" -exec rm -rf {} +
 
-          # Copy semua file dari release
+          # Copy semua file dari folder release
           cp -R "$TARGET_DIR"/* "$ROOT_DIR"
 
           # Cleanup
           rm -rf "$ROOT_DIR/extracted"
 
-          # Update VERSION
+          # Update version file
           echo "${{ steps.latest.outputs.version }}" > "$ROOT_DIR/VERSION"
+
 
       - name: Commit & Push Update
         if: steps.compare.outputs.update_needed == 'true'
