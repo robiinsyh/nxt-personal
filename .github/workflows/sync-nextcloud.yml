@@ -46,7 +46,7 @@ jobs:
       - name: Download Nextcloud Release ZIP
         if: steps.compare.outputs.update_needed == 'true'
         run: |
-          VERSION=32.0.1
+          VERSION=${{ steps.latest.outputs.version }}
           wget https://download.nextcloud.com/server/releases/nextcloud-$VERSION.zip
           unzip nextcloud-$VERSION.zip -d extracted
           rm nextcloud-$VERSION.zip
