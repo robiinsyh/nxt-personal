@@ -19,5 +19,10 @@ pipeline{
                 echo "Fuck with all of these"
             }
         }
+        stage('Testing Build3'){
+            steps{
+                echo "Testing Build3"
+            }
+        }
     }
 }
