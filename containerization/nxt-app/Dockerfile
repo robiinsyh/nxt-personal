@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y git libzip-dev libgmp-dev libxml2-dev l
         gmp 
 
 WORKDIR /var/www/html
+#########
 RUN git clone https://github.com/robiinsyh/nxt-personal.git .
 COPY fix-permissions.sh /usr/local/bin/fix-permissions.sh
 RUN chmod +x /usr/local/bin/fix-permissions.sh
