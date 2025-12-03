@@ -53,36 +53,36 @@ jobs:
         if: steps.compare.outputs.update_needed == 'true'
         run: |
           ROOT_DIR="$GITHUB_WORKSPACE"
+          EXTRACT_DIR="$ROOT_DIR/extracted"
 
           echo "Root dir: $ROOT_DIR"
+          echo "Extract dir: $EXTRACT_DIR"
 
-          # Pastikan extracted ada
-          if [ ! -d "$ROOT_DIR/extracted" ]; then
+          if [ ! -d "$EXTRACT_DIR" ]; then
             echo "ERROR: extracted tidak ditemukan"
             exit 1
           fi
 
-          # Cari folder nextcloud (hasil unzip release ZIP)
-          TARGET_DIR=$(find "$ROOT_DIR/extracted" -maxdepth 1 -type d -name "nextcloud" | head -n 1)
+          # Cari folder nextcloud
+          TARGET_DIR=$(find "$EXTRACT_DIR" -maxdepth 1 -type d -name "nextcloud" | head -n 1)
 
           if [ -z "$TARGET_DIR" ]; then
-            echo "ERROR: Folder 'nextcloud' tidak ditemukan di dalam extracted/"
+            echo "ERROR: folder nextcloud tidak ditemukan di extracted/"
             exit 1
           fi
 
           echo "Using extracted directory: $TARGET_DIR"
 
-          # Hapus semua isi repo kecuali .github
+          # Hapus isi repo kecuali .github
           find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" -exec rm -rf {} +
 
-          # Copy semua file dari folder release
-          cp -R "$TARGET_DIR"/* "$ROOT_DIR"
+          echo "Copying files with rsync..."
+          rsync -av "$TARGET_DIR"/ "$ROOT_DIR"/
 
-          # Cleanup
-          rm -rf "$ROOT_DIR/extracted"
+          rm -rf "$EXTRACT_DIR"
 
-          # Update version file
           echo "${{ steps.latest.outputs.version }}" > "$ROOT_DIR/VERSION"
+
 
 
       - name: Commit & Push Update
