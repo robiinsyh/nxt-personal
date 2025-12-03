@@ -58,21 +58,21 @@ jobs:
         run: |
           # Pastikan folder extracted ada
           if [ ! -d "extracted" ]; then
-            echo "ERROR: Folder 'extracted' tidak ditemukan. Download atau unzip gagal."
+            echo "ERROR: Folder 'extracted' tidak ditemukan."
             exit 1
           fi
 
-          # Cari directory nextcloud-*
-          TARGET_DIR=$(find extracted -maxdepth 1 -type d -name "nextcloud-*" | head -n 1)
+          # Cari directory nextcloud (hasil unzip release ZIP)
+          TARGET_DIR=$(find extracted -maxdepth 1 -type d -name "nextcloud" | head -n 1)
 
           if [ -z "$TARGET_DIR" ]; then
-            echo "ERROR: Tidak menemukan folder nextcloud-* di dalam extracted/"
+            echo "ERROR: Folder 'nextcloud' tidak ditemukan di dalam extracted/"
             exit 1
           fi
 
           echo "Using extracted directory: $TARGET_DIR"
 
-          # Hapus isi repo kecuali .github
+          # Hapus semua isi repo kecuali .github
           find . -mindepth 1 -maxdepth 1 ! -name ".github" -exec rm -rf {} +
 
           # Copy isi nextcloud ke repo
@@ -81,7 +81,9 @@ jobs:
           # Cleanup
           rm -rf extracted
 
+          # Update file VERSION
           echo "${{ steps.latest.outputs.version }}" > VERSION
+
 
 
       - name: Commit & Push Update
