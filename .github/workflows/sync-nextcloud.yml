@@ -1,5 +1,8 @@
 name: Sync Nextcloud Release
 
+permissions:
+  contents: write 
+
 on:
   schedule:
     - cron: "0 */6 * * *"   # cek setiap 6 jam
