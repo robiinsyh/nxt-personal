@@ -1,0 +1,48 @@
+services:
+  db:
+    image: mariadb:10.11-jammy
+    container_name: nextcloud-db
+    environment:
+      MARIADB_DATABASE: nextcloud
+      MARIADB_USER: nextclouduser
+      MARIADB_PASSWORD: NextcloudStrong
+      MARIADB_ROOT_PASSWORD: robi8741.
+    volumes:
+      - "nxt-data:/var/lib/mysql"
+    restart: always
+  
+  nxt-app:
+    build:
+      context: ./containerization/nxt-app
+    image: nxt-app-image
+    container_name: nextcloud-app
+    depends_on:
+       - db
+    environment:
+        MYSQL_DATABASE: nextcloud
+        MYSQL_USER: nextclouduser
+        MYSQL_PASSWORD: NextcloudStrong
+        MYSQL_HOST: db
+    volumes:
+       - nc-config:/var/www/html/config
+       - nc-data:/var/www/html/data
+    restart: always
+    ports:
+      - "80:80"
+
+  nginx:
+    build:
+       context: ./containerization/nginx
+    container_name: lb-nginx
+    ports:
+      - "8990:8990"
+    restart: always
+  
+
+volumes:
+  nxt-data:
+  nc-config:
+  nc-data:
+
+
+    
