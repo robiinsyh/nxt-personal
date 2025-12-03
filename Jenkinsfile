@@ -13,5 +13,11 @@ pipeline{
                 echo "Building Nextcloud Personal Edition Docker Image"
             }
         }
+
+        stage('Build Message2'){
+            steps{
+                echo "Fuck with all of these"
+            }
+        }
     }
 }
