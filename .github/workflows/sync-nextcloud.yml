@@ -3,7 +3,7 @@ name: Sync Nextcloud Release
 on:
   schedule:
     - cron: "0 */6 * * *"   # cek setiap 6 jam
-  workflow_dispatch:        # bisa jalankan manual
+  workflow_dispatch:         # bisa jalankan manual
 
 jobs:
   update-nextcloud:
@@ -66,26 +66,27 @@ jobs:
             exit 1
           fi
 
-          TARGET_DIR=$(find "$ROOT_DIR/extracted" -maxdepth 1 -type d -name "nextcloud" | head -n 1)
+          # Cari folder nextcloud-*
+          TARGET_DIR=$(find "$ROOT_DIR/extracted" -maxdepth 1 -type d -name "nextcloud-*" | head -n 1)
 
           if [ -z "$TARGET_DIR" ]; then
-            echo "ERROR: nextcloud folder not found!"
+            echo "ERROR: Folder nextcloud-* tidak ditemukan di dalam extracted/"
             exit 1
           fi
 
-          echo "Using extracted dir: $TARGET_DIR"
+          echo "Using extracted directory: $TARGET_DIR"
 
-          # Hapus isi repo kecuali .github
+          # Hapus semua isi repo kecuali .github
           find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" -exec rm -rf {} +
 
-          # Copy isi nextcloud ke root repo
+          # Copy semua file dari release
           cp -R "$TARGET_DIR"/* "$ROOT_DIR"
 
+          # Cleanup
           rm -rf "$ROOT_DIR/extracted"
 
+          # Update VERSION
           echo "${{ steps.latest.outputs.version }}" > "$ROOT_DIR/VERSION"
-
-
 
       - name: Commit & Push Update
         if: steps.compare.outputs.update_needed == 'true'
