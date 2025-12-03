@@ -67,7 +67,7 @@ jobs:
           rm -rf extracted
 
           # Bersihkan repo kecuali .github
-          find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" -exec rm -rf {} +
+          find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" ! -name ".git" -exec rm -rf {} +
 
           # Copy isi nextcloud release ke repo
           rsync -av "$WORK_DIR"/ "$ROOT_DIR"/
