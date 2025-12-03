@@ -52,41 +52,34 @@ jobs:
           rm nextcloud-$VERSION.zip
 
 
-      - name: Replace repository contents (safe overwrite)
+      - name: Replace repository contents
         if: steps.compare.outputs.update_needed == 'true'
         run: |
           ROOT_DIR="$GITHUB_WORKSPACE"
-          EXTRACT_DIR="extracted/nextcloud"
+          WORK_DIR="/tmp/nextcloud-release"
 
-          echo "Using extracted dir: $EXTRACT_DIR"
+          echo "Root dir: $ROOT_DIR"
 
-          # List folder bawaan Nextcloud yang boleh ditimpa
-          NC_DIRS="apps config core lib ocs resources 3rdparty updater"
+          # Buat workdir sementara
+          mkdir -p "$WORK_DIR"
 
-          # Hapus folder Nextcloud lama agar tidak conflict
-          for d in $NC_DIRS; do
-            if [ -d "$ROOT_DIR/$d" ]; then
-              echo "Removing old: $ROOT_DIR/$d"
-              rm -rf "$ROOT_DIR/$d"
-            fi
-          done
+          # Copy hasil extract ke /tmp supaya tidak ikut terhapus
+          cp -R extracted/nextcloud/* "$WORK_DIR"/
 
-          # Update semua folder Nextcloud
-          for d in $NC_DIRS; do
-            if [ -d "$EXTRACT_DIR/$d" ]; then
-              echo "Copying $d..."
-              cp -R "$EXTRACT_DIR/$d" "$ROOT_DIR/"
-            fi
-          done
+          # Hapus extracted
+          rm -rf extracted
 
-          # Copy file-file Nextcloud lain (index.php, version.php, OCC dll)
-          cp -f "$EXTRACT_DIR"/*.php "$ROOT_DIR/" || true
-          cp -f "$EXTRACT_DIR"/*.json "$ROOT_DIR/" || true
-          cp -f "$EXTRACT_DIR"/.htaccess "$ROOT_DIR/" || true
+          # Bersihkan repo kecuali .github
+          find "$ROOT_DIR" -mindepth 1 -maxdepth 1 ! -name ".github" ! -name ".git" -exec rm -rf {} +
 
-          # Update VERSION
+          # Copy isi nextcloud release ke repo
+          rsync -av "$WORK_DIR"/ "$ROOT_DIR"/
+
+          # Cleanup temp
+          rm -rf "$WORK_DIR"
+
+          # Update version
           echo "${{ steps.latest.outputs.version }}" > "$ROOT_DIR/VERSION"
-
 
 
       - name: Commit & Push Update
