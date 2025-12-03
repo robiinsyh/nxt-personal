@@ -40,6 +40,14 @@ jobs:
           else
             echo "update_needed=true" >> $GITHUB_OUTPUT
           fi
+      - name: Download Nextcloud Release ZIP
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          VERSION=${{ steps.latest.outputs.version }}
+          wget https://download.nextcloud.com/server/releases/nextcloud-$VERSION.zip
+          unzip nextcloud-$VERSION.zip -d extracted
+          rm nextcloud-$VERSION.zip
+
 
       - name: Replace repository contents
         if: steps.compare.outputs.update_needed == 'true'
