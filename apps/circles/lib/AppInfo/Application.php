@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace OCA\Circles\AppInfo;
 
 use Closure;
-use OC;
+use OCA\Circles\ConfigLexicon;
 use OCA\Circles\Dashboard\TeamDashboardWidget;
 use OCA\Circles\Events\AddingCircleMemberEvent;
 use OCA\Circles\Events\CircleMemberAddedEvent;
@@ -46,7 +46,7 @@ use OCA\Circles\MountManager\CircleMountProvider;
 use OCA\Circles\Notification\Notifier;
 use OCA\Circles\Search\UnifiedSearchProvider;
 use OCA\Circles\Service\ConfigService;
-use OCA\Files\App as FilesApp;
+use OCA\Circles\ShareByCircleProvider;
 use OCP\Accounts\UserUpdatedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -59,6 +59,7 @@ use OCP\Group\Events\GroupDeletedEvent;
 use OCP\Group\Events\UserAddedEvent;
 use OCP\Group\Events\UserRemovedEvent;
 use OCP\IServerContainer;
+use OCP\Share\IManager as IShareManager;
 use OCP\User\Events\UserChangedEvent;
 use OCP\User\Events\UserCreatedEvent;
 use OCP\User\Events\UserDeletedEvent;
@@ -122,6 +123,8 @@ class Application extends App implements IBootstrap {
 
 		$context->registerDashboardWidget(TeamDashboardWidget::class);
 		$context->registerTeamResourceProvider(FileSharingTeamResourceProvider::class);
+
+		$context->registerConfigLexicon(ConfigLexicon::class);
 	}
 
 
@@ -133,11 +136,14 @@ class Application extends App implements IBootstrap {
 	public function boot(IBootContext $context): void {
 		$serverContainer = $context->getServerContainer();
 
+		$context->injectFn(function (IShareManager $shareManager) {
+			$shareManager->registerShareProvider(ShareByCircleProvider::class);
+		});
+
 		$this->configService = $context->getAppContainer()
 			->get(ConfigService::class);
 
 		$context->injectFn(Closure::fromCallable([$this, 'registerMountProvider']));
-		$context->injectFn(Closure::fromCallable([$this, 'registerFilesNavigation']));
 	}
 
 
@@ -148,22 +154,5 @@ class Application extends App implements IBootstrap {
 
 		$mountProviderCollection = $container->get(IMountProviderCollection::class);
 		$mountProviderCollection->registerProvider($container->get(CircleMountProvider::class));
-	}
-
-	public function registerFilesNavigation() {
-		$appManager = FilesApp::getNavigationManager();
-		$appManager->add(
-			function () {
-				$l = OC::$server->getL10N('circles');
-
-				return [
-					'id' => 'circlesfilter',
-					'appname' => 'circles',
-					'script' => 'files/list.php',
-					'order' => 25,
-					'name' => $l->t('Shared to Circles'),
-				];
-			}
-		);
 	}
 }

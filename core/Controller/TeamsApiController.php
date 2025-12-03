@@ -13,6 +13,7 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\OCSController;
 use OCP\IRequest;
 use OCP\Teams\ITeamManager;
 use OCP\Teams\Team;
@@ -24,7 +25,7 @@ use OCP\Teams\TeamResource;
  * @psalm-import-type CoreTeamWithResources from ResponseDefinitions
  * @property $userId string
  */
-class TeamsApiController extends \OCP\AppFramework\OCSController {
+class TeamsApiController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
@@ -68,7 +69,6 @@ class TeamsApiController extends \OCP\AppFramework\OCSController {
 		$sharesPerTeams = $this->teamManager->getSharedWithList(array_map(fn (Team $team): string => $team->getId(), $teams), $this->userId);
 		$listTeams = array_values(array_map(function (Team $team) use ($sharesPerTeams) {
 			$response = $team->jsonSerialize();
-			/** @psalm-suppress PossiblyNullArgument The route is limited to logged in users */
 			$response['resources'] = array_map(static fn (TeamResource $resource) => $resource->jsonSerialize(), $sharesPerTeams[$team->getId()] ?? []);
 			return $response;
 		}, $teams));

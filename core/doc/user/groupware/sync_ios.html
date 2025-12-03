@@ -8,10 +8,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Synchronizing with iOS &mdash; Nextcloud latest User Manual latest documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=bad88653" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8ff6e0db" />
       <link rel="stylesheet" type="text/css" href="../_static/dark_mode_css/general.css?v=c0a7eb24" />
       <link rel="stylesheet" type="text/css" href="../_static/dark_mode_css/dark.css?v=70edf1c7" />
 
@@ -59,7 +59,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Nextcloud latest user manual introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new for users in Nextcloud latest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webinterface.html">The Nextcloud Web interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files &amp; synchronization</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Groupware</a><ul class="current">
@@ -130,10 +129,18 @@
 <li><p>Enter your user name and password.</p></li>
 <li><p>Select Next.</p></li>
 <li><p>Open Advanced Settings</p></li>
-<li><p>For server, type the domain name of your server and username i.e. <code class="docutils literal notranslate"><span class="pre">example.com/remote.php/dav/principals/users/username/</span></code></p></li>
+<li><p>For server, type the domain name of your server and username, i.e., <code class="docutils literal notranslate"><span class="pre">example.com/remote.php/dav/principals/users/username/</span></code>.</p></li>
 <li><p>Close Advanced Settings</p></li>
 </ol>
 <p>Your calendar will now be visible in the Calendar application.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get an error message related to SSL, you can try the following: Make sure that you
+either specify both the protocol (<code class="docutils literal notranslate"><span class="pre">https://</span></code>) and the port (usually <code class="docutils literal notranslate"><span class="pre">443</span></code>) in the <code class="docutils literal notranslate"><span class="pre">Server</span></code> field,
+i.e., <code class="docutils literal notranslate"><span class="pre">https://example.com:443/remote.php/dav/principals/users/username/</span></code>,
+or none, like in the step-by-step guide above. Either way, the application automatically tries to use SSL,
+which you can confirm in  “Advanced Settings” of the account after saving.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Beginning with iOS 12 an SSL encryption is necessary. Therefore do <strong>not</strong> disable <strong>SSL</strong>
@@ -160,7 +167,7 @@
 <p>Beginning with iOS 12 an SSL encryption is necessary. Therefore do <strong>not</strong> disable <strong>SSL</strong>
 (For this reason a certificate is required at your domain, <a class="reference external" href="https://letsencrypt.org/">https://letsencrypt.org/</a> will do).</p>
 </div>
-<p>If it’s still not working, have a look at <a class="reference external" href="https://docs.nextcloud.com/server/31/admin_manual/issues/general_troubleshooting.html#troubleshooting-contacts-calendar">Troubleshooting Contacts &amp; Calendar</a> or <a class="reference external" href="https://docs.nextcloud.com/server/31/admin_manual/issues/general_troubleshooting.html#service-discovery">Troubleshooting Service Discovery</a>.</p>
+<p>If it’s still not working, have a look at <a class="reference external" href="https://docs.nextcloud.com/server/latest/admin_manual/issues/general_troubleshooting.html#troubleshooting-contacts-calendar">Troubleshooting Contacts &amp; Calendar</a> or <a class="reference external" href="https://docs.nextcloud.com/server/latest/admin_manual/issues/general_troubleshooting.html#service-discovery">Troubleshooting Service Discovery</a>.</p>
 </section>
 </section>
 
@@ -175,7 +182,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025 Nextcloud GmbH.</p>
+    <p>&#169; Copyright 2016-2025 Nextcloud GmbH and Nextcloud contributors.</p>
   </div>
 
    
@@ -230,6 +237,14 @@
           </dd>
         
           <dd style="width: 32%">
+            <a href="https://docs.nextcloud.com/server/31/user_manual"
+               
+            >
+              31
+            </a>
+          </dd>
+        
+          <dd style="width: 32%">
             <a href="https://docs.nextcloud.com/server/30/user_manual"
                
             >
@@ -242,14 +257,6 @@
                
             >
               29
-            </a>
-          </dd>
-        
-          <dd style="width: 32%">
-            <a href="https://docs.nextcloud.com/server/28/user_manual"
-               
-            >
-              28
             </a>
           </dd>
         

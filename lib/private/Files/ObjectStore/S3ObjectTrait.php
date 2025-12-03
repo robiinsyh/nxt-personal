@@ -79,6 +79,13 @@ trait S3ObjectTrait {
 		return $fh;
 	}
 
+	private function buildS3Metadata(array $metadata): array {
+		$result = [];
+		foreach ($metadata as $key => $value) {
+			$result['x-amz-meta-' . $key] = $value;
+		}
+		return $result;
+	}
 
 	/**
 	 * Single object put helper
@@ -89,12 +96,17 @@ trait S3ObjectTrait {
 	 * @throws \Exception when something goes wrong, message will be logged
 	 */
 	protected function writeSingle(string $urn, StreamInterface $stream, array $metaData): void {
+		$mimetype = $metaData['mimetype'] ?? null;
+		unset($metaData['mimetype']);
+		unset($metaData['size']);
+
 		$args = [
 			'Bucket' => $this->bucket,
 			'Key' => $urn,
 			'Body' => $stream,
 			'ACL' => 'private',
-			'ContentType' => $metaData['mimetype'] ?? null,
+			'ContentType' => $mimetype,
+			'Metadata' => $this->buildS3Metadata($metaData),
 			'StorageClass' => $this->storageClass,
 		] + $this->getSSECParameters();
 
@@ -115,6 +127,10 @@ trait S3ObjectTrait {
 	 * @throws \Exception when something goes wrong, message will be logged
 	 */
 	protected function writeMultiPart(string $urn, StreamInterface $stream, array $metaData): void {
+		$mimetype = $metaData['mimetype'] ?? null;
+		unset($metaData['mimetype']);
+		unset($metaData['size']);
+
 		$attempts = 0;
 		$uploaded = false;
 		$concurrency = $this->concurrency;
@@ -132,7 +148,8 @@ trait S3ObjectTrait {
 				'part_size' => $this->uploadPartSize,
 				'state' => $state,
 				'params' => [
-					'ContentType' => $metaData['mimetype'] ?? null,
+					'ContentType' => $mimetype,
+					'Metadata' => $this->buildS3Metadata($metaData),
 					'StorageClass' => $this->storageClass,
 				] + $this->getSSECParameters(),
 				'before_upload' => function (Command $command) use (&$totalWritten) {

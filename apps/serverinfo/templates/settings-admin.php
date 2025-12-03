@@ -7,6 +7,7 @@ declare(strict_types=1);
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+use OCA\ServerInfo\Resources\CPU;
 use OCA\ServerInfo\Resources\Disk;
 use OCA\ServerInfo\Resources\Memory;
 use OCA\ServerInfo\Resources\NetInterface;
@@ -31,6 +32,8 @@ function FormatMegabytes(int $byte): string {
 
 /** @var array $_ */
 
+/** @var CPU $cpu */
+$cpu = $_['cpu'];
 /** @var Memory $memory */
 $memory = $_['memory'];
 /** @var Disk[] $disks */
@@ -55,12 +58,7 @@ $phpinfo = $_['phpinfo'];
 					<?php p($_['hostname']); ?>
 				</h2>
 				<p><?php p($l->t('Operating System:')); ?> <strong id="numFilesStorage"><?php p($_['osname']); ?></strong></p>
-				<p><?php p($l->t('CPU:')); ?>
-				<?php if ($_['cpu'] !== 'Unknown Processor'): ?>
-				<strong id="numFilesStorage"><?php p($_['cpu']) ?></strong></p>
-				<?php else: ?>
-				<strong id="numFilesStorage"><?php p($l->t('Unknown Processor')) ?></strong></p>
-				<?php endif; ?>
+				<p><?php p($l->t('CPU:')); ?> <strong id="numFilesStorage"><?php p($cpu->getName()) ?></strong> (<?= $cpu->getThreads() ?> <?php p($l->t('threads')); ?>)</p>
 				<p><?php p($l->t('Memory:')); ?>
 				<?php if ($memory->getMemTotal() > 0): ?> <strong id="numFilesStorage"><?php p(FormatMegabytes($memory->getMemTotal())) ?></strong></p>
 				<?php endif; ?>
@@ -370,6 +368,61 @@ $phpinfo = $_['phpinfo'];
 						<?php endif; ?>
 					</div>
 				</div>
+				<?php if ($_['fpm'] !== false): ?>
+				<h2><?php p($l->t('FPM worker pool')); ?></h2>
+				<div class="infobox">
+					<div class="fpm-wrapper">
+						<p>
+							<?php p($l->t('Pool name:')); ?>
+							<em id="fpmPool"><?php p($_['fpm']['pool']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Pool type:')); ?>
+							<em id="fpmType"><?php p($_['fpm']['process-manager']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Start time:')); ?>
+							<em id="fpmStartTime"><?php p($_['fpm']['start-time']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Accepted connections:')); ?>
+							<em id="fpmAcceptedConn"><?php p($_['fpm']['accepted-conn']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Total processes:')); ?>
+							<em id="fpmTotalProcesses"><?php p($_['fpm']['total-processes']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Active processes:')); ?>
+							<em id="fpmActiveProcesses"><?php p($_['fpm']['active-processes']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Idle processes:')); ?>
+							<em id="fpmIdleProcesses"><?php p($_['fpm']['idle-processes']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Listen queue:')); ?>
+							<em id="fpmListenQueue"><?php p($_['fpm']['listen-queue']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Slow requests:')); ?>
+							<em id="fpmSlowRequests"><?php p($_['fpm']['slow-requests']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Max listen queue:')); ?>
+							<em id="fpmMaxListenQueue"><?php p($_['fpm']['max-listen-queue']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Max active processes:')); ?>
+							<em id="fpmMaxActiveProcesses"><?php p($_['fpm']['max-active-processes']); ?></em>
+						</p>
+						<p>
+							<?php p($l->t('Max children reached:')); ?>
+							<em id="fpmMaxChildrenReached"><?php p($_['fpm']['max-children-reached']); ?></em>
+						</p>
+					</div>
+				</div>
+				<?php endif; ?>
 			</div>
 
 			<div class="col col-6 col-m-12">

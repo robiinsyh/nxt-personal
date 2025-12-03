@@ -19,7 +19,6 @@ SPDX-FileCopyrightText: T. Jameson Little <t.jameson.little@gmail.com>
 SPDX-FileCopyrightText: Stefan Thomas <justmoon@members.fsf.org> (http://www.justmoon.net)
 SPDX-FileCopyrightText: Sindre Sorhus
 SPDX-FileCopyrightText: Roman Shtylman <shtylman@gmail.com>
-SPDX-FileCopyrightText: Roeland Jago Douma
 SPDX-FileCopyrightText: Rob Cresswell <robcresswell@pm.me>
 SPDX-FileCopyrightText: Paul Vorbach <paul@vorba.ch> (http://paul.vorba.ch)
 SPDX-FileCopyrightText: Paul Vorbach <paul@vorb.de> (http://vorb.de)
@@ -48,10 +47,10 @@ SPDX-FileCopyrightText: @nextcloud/dialogs developers
 
 This file is generated from multiple sources. Included packages:
 - @floating-ui/core
-	- version: 1.6.5
+	- version: 1.7.3
 	- license: MIT
 - @floating-ui/utils
-	- version: 0.2.5
+	- version: 0.2.10
 	- license: MIT
 - @linusborg/vue-simple-portal
 	- version: 0.1.5
@@ -78,22 +77,22 @@ This file is generated from multiple sources. Included packages:
 	- version: 0.5.0
 	- license: GPL-3.0-or-later
 - @nextcloud/capabilities
-	- version: 1.2.0
+	- version: 1.2.1
 	- license: GPL-3.0-or-later
 - @nextcloud/dialogs
 	- version: 6.4.1
 	- license: AGPL-3.0-or-later
 - semver
-	- version: 7.7.3
+	- version: 7.7.2
 	- license: ISC
 - @nextcloud/event-bus
 	- version: 3.3.3
 	- license: GPL-3.0-or-later
 - @nextcloud/initial-state
-	- version: 2.2.0
+	- version: 3.0.0
 	- license: GPL-3.0-or-later
 - @nextcloud/l10n
-	- version: 3.4.0
+	- version: 3.4.1
 	- license: GPL-3.0-or-later
 - @nextcloud/logger
 	- version: 3.0.2
@@ -101,17 +100,20 @@ This file is generated from multiple sources. Included packages:
 - @nextcloud/router
 	- version: 3.0.1
 	- license: GPL-3.0-or-later
+- @nextcloud/sharing
+	- version: 0.3.0
+	- license: GPL-3.0-or-later
 - @nextcloud/vue-select
-	- version: 3.25.1
+	- version: 3.26.0
 	- license: MIT
-- @nextcloud/browser-storage
-	- version: 0.4.0
+- @nextcloud/initial-state
+	- version: 2.2.0
 	- license: GPL-3.0-or-later
 - @nextcloud/vue
-	- version: 8.29.2
+	- version: 8.34.0
 	- license: AGPL-3.0-or-later
 - @ungap/structured-clone
-	- version: 1.2.0
+	- version: 1.3.0
 	- license: ISC
 - @vueuse/components
 	- version: 11.3.0
@@ -124,9 +126,6 @@ This file is generated from multiple sources. Included packages:
 	- license: MIT
 - axios
 	- version: 1.12.2
-	- license: MIT
-- bail
-	- version: 2.0.2
 	- license: MIT
 - base64-js
 	- version: 1.5.1
@@ -144,7 +143,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 7.1.2
 	- license: MIT
 - decode-named-character-reference
-	- version: 1.1.0
+	- version: 1.2.0
 	- license: MIT
 - devlop
 	- version: 1.1.0
@@ -162,7 +161,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 1.0.0-beta.19
 	- license: MIT
 - focus-trap
-	- version: 7.6.5
+	- version: 7.6.6
 	- license: MIT
 - hast-to-hyperscript
 	- version: 10.0.3
@@ -185,9 +184,6 @@ This file is generated from multiple sources. Included packages:
 - is-buffer
 	- version: 1.1.6
 	- license: MIT
-- is-plain-obj
-	- version: 4.1.0
-	- license: MIT
 - md5
 	- version: 2.3.0
 	- license: BSD-3-Clause
@@ -198,7 +194,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 5.0.0
 	- license: MIT
 - mdast-util-find-and-replace
-	- version: 3.0.1
+	- version: 3.0.2
 	- license: MIT
 - mdast-util-from-markdown
 	- version: 2.0.2
@@ -231,7 +227,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 2.0.1
 	- license: MIT
 - micromark-util-character
-	- version: 2.1.0
+	- version: 2.1.1
 	- license: MIT
 - micromark-util-chunked
 	- version: 2.0.1
@@ -249,7 +245,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 2.0.1
 	- license: MIT
 - micromark-util-encode
-	- version: 2.0.0
+	- version: 2.0.1
 	- license: MIT
 - micromark-util-html-tag-name
 	- version: 2.0.1
@@ -261,7 +257,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 2.0.1
 	- license: MIT
 - micromark-util-sanitize-uri
-	- version: 2.0.0
+	- version: 2.0.1
 	- license: MIT
 - micromark-util-subtokenize
 	- version: 2.1.0
@@ -300,7 +296,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 11.0.0
 	- license: MIT
 - remark-rehype
-	- version: 11.1.0
+	- version: 11.1.2
 	- license: MIT
 - remark-unlink-protocols
 	- version: 1.0.0
@@ -321,7 +317,7 @@ This file is generated from multiple sources. Included packages:
 	- version: 0.4.4
 	- license: MIT
 - tabbable
-	- version: 6.2.0
+	- version: 6.3.0
 	- license: MIT
 - toastify-js
 	- version: 1.12.0
@@ -354,10 +350,10 @@ This file is generated from multiple sources. Included packages:
 	- version: 5.0.0
 	- license: MIT
 - vfile-message
-	- version: 4.0.2
+	- version: 4.0.3
 	- license: MIT
 - vfile
-	- version: 6.0.2
+	- version: 6.0.3
 	- license: MIT
 - vue-loader
 	- version: 15.11.1

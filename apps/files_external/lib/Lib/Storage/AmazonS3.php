@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2016 ownCloud, Inc.
@@ -20,6 +21,7 @@ use OCP\Files\FileInfo;
 use OCP\Files\IMimeTypeDetector;
 use OCP\ICache;
 use OCP\ICacheFactory;
+use OCP\ITempManager;
 use OCP\Server;
 use Psr\Log\LoggerInterface;
 
@@ -451,7 +453,7 @@ class AmazonS3 extends Common {
 				}
 			case 'w':
 			case 'wb':
-				$tmpFile = \OC::$server->getTempManager()->getTemporaryFile();
+				$tmpFile = Server::get(ITempManager::class)->getTemporaryFile();
 
 				$handle = fopen($tmpFile, 'w');
 				return CallbackWrapper::wrap($handle, null, null, function () use ($path, $tmpFile): void {
@@ -472,7 +474,7 @@ class AmazonS3 extends Common {
 				} else {
 					$ext = '';
 				}
-				$tmpFile = \OC::$server->getTempManager()->getTemporaryFile($ext);
+				$tmpFile = Server::get(ITempManager::class)->getTemporaryFile($ext);
 				if ($this->file_exists($path)) {
 					$source = $this->readObject($path);
 					file_put_contents($tmpFile, $source);

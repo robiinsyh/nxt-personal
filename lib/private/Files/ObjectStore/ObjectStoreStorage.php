@@ -22,6 +22,7 @@ use OCP\Files\FileInfo;
 use OCP\Files\GenericFileException;
 use OCP\Files\NotFoundException;
 use OCP\Files\ObjectStore\IObjectStore;
+use OCP\Files\ObjectStore\IObjectStoreMetaData;
 use OCP\Files\ObjectStore\IObjectStoreMultiPartUpload;
 use OCP\Files\Storage\IChunkedFileWrite;
 use OCP\Files\Storage\IStorage;
@@ -412,16 +413,6 @@ class ObjectStoreStorage extends \OC\Files\Storage\Common implements IChunkedFil
 				//create a empty file, need to have at least on char to make it
 				// work with all object storage implementations
 				$this->file_put_contents($path, ' ');
-				$mimeType = \OC::$server->getMimeTypeDetector()->detectPath($path);
-				$stat = [
-					'etag' => $this->getETag($path),
-					'mimetype' => $mimeType,
-					'size' => 0,
-					'mtime' => $mtime,
-					'storage_mtime' => $mtime,
-					'permissions' => \OCP\Constants::PERMISSION_ALL - \OCP\Constants::PERMISSION_CREATE,
-				];
-				$this->getCache()->put($path, $stat);
 			} catch (\Exception $ex) {
 				$this->logger->error(
 					'Could not create object for ' . $path,
@@ -481,6 +472,8 @@ class ObjectStoreStorage extends \OC\Files\Storage\Common implements IChunkedFil
 		$mimetype = $mimetypeDetector->detectPath($path);
 		$metadata = [
 			'mimetype' => $mimetype,
+			'original-storage' => $this->getId(),
+			'original-path' => $path,
 		];
 		if ($size) {
 			$metadata['size'] = $size;
@@ -602,8 +595,8 @@ class ObjectStoreStorage extends \OC\Files\Storage\Common implements IChunkedFil
 	public function moveFromStorage(IStorage $sourceStorage, string $sourceInternalPath, string $targetInternalPath, ?ICacheEntry $sourceCacheEntry = null): bool {
 		$sourceCache = $sourceStorage->getCache();
 		if (
-			$sourceStorage->instanceOfStorage(ObjectStoreStorage::class) &&
-			$sourceStorage->getObjectStore()->getStorageId() === $this->getObjectStore()->getStorageId()
+			$sourceStorage->instanceOfStorage(ObjectStoreStorage::class)
+			&& $sourceStorage->getObjectStore()->getStorageId() === $this->getObjectStore()->getStorageId()
 		) {
 			if ($this->getCache()->get($targetInternalPath)) {
 				$this->unlink($targetInternalPath);

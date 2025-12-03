@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2016 ownCloud, Inc.
@@ -19,6 +20,7 @@ use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Files\Config\IUserMountCache;
 use OCP\Files\Events\InvalidateMountCacheEvent;
 use OCP\Files\StorageNotAvailableException;
+use OCP\Server;
 use OCP\Util;
 use Psr\Log\LoggerInterface;
 
@@ -76,13 +78,13 @@ abstract class StoragesService {
 			return $config;
 		} catch (\UnexpectedValueException $e) {
 			// don't die if a storage backend doesn't exist
-			\OC::$server->get(LoggerInterface::class)->error('Could not load storage.', [
+			Server::get(LoggerInterface::class)->error('Could not load storage.', [
 				'app' => 'files_external',
 				'exception' => $e,
 			]);
 			return null;
 		} catch (\InvalidArgumentException $e) {
-			\OC::$server->get(LoggerInterface::class)->error('Could not load storage.', [
+			Server::get(LoggerInterface::class)->error('Could not load storage.', [
 				'app' => 'files_external',
 				'exception' => $e,
 			]);

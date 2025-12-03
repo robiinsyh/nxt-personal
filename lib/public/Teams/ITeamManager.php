@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -44,7 +45,7 @@ interface ITeamManager {
 	 * @param list<Team> $teams
 	 * @return array<string, list<TeamResource>>
 	 *
-	 * @since 31.0.11
+	 * @since 32.0.2
 	 */
 	public function getSharedWithList(array $teams, string $userId): array;
 }

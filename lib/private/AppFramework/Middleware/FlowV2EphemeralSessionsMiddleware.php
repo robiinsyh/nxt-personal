@@ -50,8 +50,8 @@ class FlowV2EphemeralSessionsMiddleware extends Middleware {
 
 		// Allow certain controllers/methods to proceed without logging out.
 		if (
-			$controller instanceof ClientFlowLoginV2Controller &&
-			($methodName === 'grantPage' || $methodName === 'generateAppPassword')
+			$controller instanceof ClientFlowLoginV2Controller
+			&& ($methodName === 'grantPage' || $methodName === 'generateAppPassword')
 		) {
 			return;
 		}

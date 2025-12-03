@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2016 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2016 ownCloud, Inc.
@@ -157,12 +158,11 @@ class MountPublicLinkController extends Controller {
 		try {
 			$response = $httpClient->post($remote . '/index.php/apps/federatedfilesharing/createFederatedShare',
 				[
-					'body' =>
-						[
-							'token' => $token,
-							'shareWith' => rtrim($cloudId->getId(), '/'),
-							'password' => $password
-						],
+					'body' => [
+						'token' => $token,
+						'shareWith' => rtrim($cloudId->getId(), '/'),
+						'password' => $password
+					],
 					'connect_timeout' => 10,
 				]
 			);

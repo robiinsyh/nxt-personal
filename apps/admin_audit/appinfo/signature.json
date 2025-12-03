@@ -1,6 +1,6 @@
 {
     "hashes": {
-        "appinfo\/info.xml": "ebb6f42a5b8e566571cf9ae0ef25ae683c23d28e54286ac2f2aa9c6bcc17506f5b0232335adfe5e57596d1872a79f9de122e16fbcb1b3f90017e59de4d504c32",
+        "appinfo\/info.xml": "75c8f62a250e799ca6dfe94928e4957260f6b5c712067b46e2d92e8f476ebd8e7cde69c79fcbf1e3be4282582319a8ed7dfabe9a3830058eaf959fe804b4507d",
         "composer\/autoload.php": "ef369872e61c4eb799fe0aa4659c5528c2a0b54ad464ad4180cf5049f75b28e3f116bf584c6742af454b0c3d6b8f177fae33145e27236edb878f3d64f7ad5574",
         "composer\/composer.json": "313256fbdefcdf996284d4275a3fa35caaa698fcef0ea4c31fbb31efa7095abfdf02106a5b97a03dc3605e826ba5b209cdd1c4027f4c70f4649f8faf9ffac07e",
         "composer\/composer.lock": "aba0413aa705be0d0570c496a43249c551836824e7a2b4673b51838fe0d9f425ddd07b6c4b95aa74ca549f58e90f2a7d78b51a2a3080749a5dc2e4a46d04fd1e",
@@ -156,13 +156,13 @@
         "l10n\/zh_HK.json": "bac0fea3b3f2a69d5d590cfb4435b19fe36bc8f2d36ef5fa38ba3f3d6c80257cc9b70b47b3f4fed2064ceb3d4cba5e302ebe026f2d7ec001df17dd8edaa5cc1e",
         "l10n\/zh_TW.js": "8c689f57d7b943fe12987763fb24cb15a875c1cc55c04d3b306eda4d9d79ddbd906edf2ecda5fe3ab9c4d76789fcc430ecf2149a457c8f4064234d479c7fd02e",
         "l10n\/zh_TW.json": "79eae3bb75d9c407bb4d71eeebc555c89aaf6ecc444142c1488ae88ed1919bd04afc0182006cc09ef2c58e457f7b5d34c38b11e80f4c27ba38a60feb9a4f3926",
-        "lib\/Actions\/Action.php": "e084bd54afacd291c98d9acf8628d4bbe8c224eba2f2a3755ce7dbc720e2b0fc5b0c0a045574f4e998370f6434868d455bd7dc8b742ca019623bc393d773dcf4",
-        "lib\/Actions\/Files.php": "fd82d08fa18cc32abc9d887d9f5a9921b8637f5c829ac05f5b374e6d70543b172459fe607ce2cb06703c61aecd8f4b2833c992c26aac154b030b69cc5f52d630",
+        "lib\/Actions\/Action.php": "1ebb28a15144984b5bcbea35d714bd56a225715caa6580d63d6332d63eeeda505a0ac49f09c02ad9e1b7da1fa907b1ded04566ae0fcc38c6cdb31a7868777e7d",
+        "lib\/Actions\/Files.php": "2c237843cdf66719dd9d4543caca703cd54946623b12a103b512f1dd73f9bc50bd2aae1ad2d09b02c4d4d30dcf3cb54c11171f11778d064976d32113ef1f48ba",
         "lib\/Actions\/Sharing.php": "826cdc52bb70fbef0be0279f5c3ef73cdd63f79b35b33641be625b06ddb2acc6aa8605c438d2dac608b90daa0628f72059cb1cc52ea48b5d88d5b5110738f6b1",
         "lib\/Actions\/TagManagement.php": "3395d7265a51c22968507638a0f8e56cab3893ff301f5fef05047b97b4c5b73bd220236f04720c73d4be142200c2800ca82f315af421a9629f53fa65245f9455",
         "lib\/Actions\/Trashbin.php": "db0730d7ff1986c386bfd60d07b2d337f78d5b37509b3badb78c23c82a0c9e23e58819feb4dbfa38488c91d3c03696ef636a4736cf7fba95e9c63a43caee35d6",
-        "lib\/Actions\/Versions.php": "21453a412829bb5a8aa3e6e997c8ec83a5ccb88e9c529e1aba63e94af50770c7d3763ecd4f155d72f639e7bac26c91b1330ad4d7b730cae9d93d351c3fd8ec65",
-        "lib\/AppInfo\/Application.php": "5cfe6648b2d4b1b6b44f58f9da171d8c445831480607b60bf5e4885641382dc878c81b98e8fba2ac5ffc4944dfa45bb8cfd3ea337c89b64bc6afc612bf12b752",
+        "lib\/Actions\/Versions.php": "bd596ce1545a1ae403b56dc9e07e8092ded17c57d2dfa35c9682854ec008a339d4824377ce0f50edc3ccd34cb95ac8f709a8876a7843242329203118090367e8",
+        "lib\/AppInfo\/Application.php": "d804de8d3ff8b6da0e80f7c3514931471d08c1bb3df99915c653b496fc9d0c6e6c10bd0d41de7d00fde32b75dc7849a7dd3167518e959b9ec58c9187ba4c3686",
         "lib\/AuditLogger.php": "aac6077259a1c388d23c76a7629dff40c7d83a98829a54fd198b4942174fe08306cae45809e65ad3dafaae4e5be3426e74543e10c7a5cf5d5e9b10f75b931ecd",
         "lib\/BackgroundJobs\/Rotate.php": "ad78c2211a2647c37dc1b98ae6f4b637c86f8f24d150a84d1b07b00e3cd99fa512ca33ba7c4eb505563b1b63d6ced4c7754a7bbe3d8f78e7184ebf0305332b02",
         "lib\/IAuditLogger.php": "e6b36e403b5091ae4ff141fd164ecede9e02c04cf2b0b021a3d6df72b07ebe4e865589237d422fe63b7e4ce0908c89126f79e79f48702377e6524f610ff79159",
@@ -170,12 +170,12 @@
         "lib\/Listener\/AuthEventListener.php": "b277040f7e214d30eef6b41ad967a5e5daef1105906a7cb43fdee8fabc0ddf0352a10c57234714154fa3bc5354aa9145a9ddaf4c6c7bcd7bdf8326e4c271430b",
         "lib\/Listener\/ConsoleEventListener.php": "c4e0e6adac5aee0f31d0f3bd0786fa686bcf98e6adc3c9f801beed0ad96e657cab66a49b6a4e02ff5798fcb0a68af6688797537757493d7038acfacc57839a7e",
         "lib\/Listener\/CriticalActionPerformedEventListener.php": "8693f533f80cae38809d6ed8a835f8ee1c14199e74f5d62e936632dd4b344aa56886522c792a6412c194c819dcbe407deade2317ad501d95c0bc10db58475635",
-        "lib\/Listener\/FileEventListener.php": "cfe674c6329a7ff55b69c41c681ccd9d3c713bfd5fbdc7169d439c153462818ff550204c0c483765276681361790bca167f35028512c88eb850ce43c9327194d",
+        "lib\/Listener\/FileEventListener.php": "873df0b760f87fcdcc7d0aac97cf89dab6116eede9b39e18de7afbc8567cc2cbf26fa566e7ce5eba631aa4995e23be0e00a0fd8d9e77a5a1848a67a111f90580",
         "lib\/Listener\/GroupManagementEventListener.php": "cb954319f6e527f9f02cfca402bb708d8f796ed4fba8103bcd1dc8fbcadbe90b7d18e6edc7aa8b9d07b5d7ffbb8b2b6913f01f698fa41f362e70f3fff306c91d",
         "lib\/Listener\/SecurityEventListener.php": "72056688365bfeb84478f0242b41880112d13ab9d034dd83a8d8e5d77b4d156c5d13da31fdae0280df5df6713818ccf30decba7297879632adfc8fb4fdf8cbfc",
         "lib\/Listener\/SharingEventListener.php": "33e101c6205f52e3cf5856206d404bb36c2918b8bf6fa9b79befa5c44cb57bfb8c79c67eee344021312198199bd71736a3f2e51badb37cb34837141c35474b41",
         "lib\/Listener\/UserManagementEventListener.php": "766abdbeee29a3e5d77efc7907f635efb20fe9d958bea4e3869c043828dfd03a18b57fdc70ee9b2197486738f3314441300665ff54fc75e0730986cf992365d6"
     },
-    "signature": "L9EFiPVecKued5w3rf0vYDjcgTcXgYOgtvnXFJvCBvJT4ehG1ezOOTU0XOsIKLwa2vFolCRAUKNsNF3FM2BgR4XGb8qG1nc+JmkPN9De17LvkurqndnzFLCf8COtfcI27k+MXLJ+fcZmLfLzjZkcEbNUvXvmi6GW8EUzYBJkOdReTQPfDos0+9ZMo\/OCTJjYMQg51BH2x9jkU3DYZz7w6zH99H3QBCkJ5JQtl1T8ZAUE8mtCnINdCx\/Gz8Qu9P\/1xaK9klbmHBgOpxfIZskfqJZyW5bps0bBB8dPCWGLJGCbH3IXCXK7aNLS\/0TQELXkAnnsYtL8BHe4KCpieK4Cpg==",
+    "signature": "swz1vodIdcOjOYeDziJJIzdy3ifj4oC9tOA+ccGctVIDBPMRyBFsneSNyOoL2NolxoCzadJ58lPy1p52nt8hyHioPtlZuaIG4nZWSy0dcT5xwyLHa\/vk6DyqsczxVUg4Y3h3IFlqHhZMTYclUPERr6HDLxdloMPK4I+3bVHN24c4jHQMjRnVFndYqqHPjsjrE1FRYjRipn9SJz2j8IRF8ZbG7zxUw0j842Ye9Bt1hADKqhc1UrlIse+5d6sUlWeV2scCC8bGZNcStDC7kBgqt9fPFgQ2M3LIfzjDSON1w7nqpWcM4SlZjSjC3dybRErQJ1XnUTpcKtJudKPZbTgzaQ==",
     "certificate": "-----BEGIN CERTIFICATE-----\r\nMIIEojCCA4qgAwIBAgICEAAwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCREUx\r\nGzAZBgNVBAgMEkJhZGVuLVd1ZXJ0dGVtYmVyZzEXMBUGA1UECgwOTmV4dGNsb3Vk\r\nIEdtYkgxNjA0BgNVBAMMLU5leHRjbG91ZCBDb2RlIFNpZ25pbmcgSW50ZXJtZWRp\r\nYXRlIEF1dGhvcml0eTAeFw0xNjA2MTIyMTA1MDZaFw00MTA2MDYyMTA1MDZaMGYx\r\nCzAJBgNVBAYTAkRFMRswGQYDVQQIDBJCYWRlbi1XdWVydHRlbWJlcmcxEjAQBgNV\r\nBAcMCVN0dXR0Z2FydDEXMBUGA1UECgwOTmV4dGNsb3VkIEdtYkgxDTALBgNVBAMM\r\nBGNvcmUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDUxcrn2DC892IX\r\n8+dJjZVh9YeHF65n2ha886oeAizOuHBdWBfzqt+GoUYTOjqZF93HZMcwy0P+xyCf\r\nQqak5Ke9dybN06RXUuGP45k9UYBp03qzlUzCDalrkj+Jd30LqcSC1sjRTsfuhc+u\r\nvH1IBuBnf7SMUJUcoEffbmmpAPlEcLHxlUGlGnz0q1e8UFzjbEFj3JucMO4ys35F\r\nqZS4dhvCngQhRW3DaMlQLXEUL9k3kFV+BzlkPzVZEtSmk4HJujFCnZj1vMcjQBg\/\r\nBqq1HCmUB6tulnGcxUzt\/Z\/oSIgnuGyENeke077W3EyryINL7EIyD4Xp7sxLizTM\r\nFCFCjjH1AgMBAAGjggFDMIIBPzAJBgNVHRMEAjAAMBEGCWCGSAGG+EIBAQQEAwIG\r\nQDAzBglghkgBhvhCAQ0EJhYkT3BlblNTTCBHZW5lcmF0ZWQgU2VydmVyIENlcnRp\r\nZmljYXRlMB0GA1UdDgQWBBQwc1H9AL8pRlW2e5SLCfPPqtqc0DCBpQYDVR0jBIGd\r\nMIGagBRt6m6qqTcsPIktFz79Ru7DnnjtdKF+pHwwejELMAkGA1UEBhMCREUxGzAZ\r\nBgNVBAgMEkJhZGVuLVd1ZXJ0dGVtYmVyZzESMBAGA1UEBwwJU3R1dHRnYXJ0MRcw\r\nFQYDVQQKDA5OZXh0Y2xvdWQgR21iSDEhMB8GA1UEAwwYTmV4dGNsb3VkIFJvb3Qg\r\nQXV0aG9yaXR5ggIQADAOBgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUH\r\nAwEwDQYJKoZIhvcNAQELBQADggEBADZ6+HV\/+0NEH3nahTBFxO6nKyR\/VWigACH0\r\nnaV0ecTcoQwDjKDNNFr+4S1WlHdwITlnNabC7v9rZ\/6QvbkrOTuO9fOR6azp1EwW\r\n2pixWqj0Sb9\/dSIVRpSq+jpBE6JAiX44dSR7zoBxRB8DgVO2Afy0s80xEpr5JAzb\r\nNYuPS7M5UHdAv2dr16fDcDIvn+vk92KpNh1NTeZFjBbRVQ9DXrgkRGW34TK8uSLI\r\nYG6jnfJ6eJgTaO431ywWPXNg1mUMaT\/+QBOgB299QVCKQU+lcZWptQt+RdsJUm46\r\nNY\/nARy4Oi4uOe88SuWITj9KhrFmEvrUlgM8FvoXA1ldrR7KiEg=\r\n-----END CERTIFICATE-----"
 }

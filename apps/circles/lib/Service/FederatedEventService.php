@@ -53,6 +53,7 @@ use OCA\Circles\Tools\Model\NCRequest;
 use OCA\Circles\Tools\Model\Request;
 use OCA\Circles\Tools\Traits\TNCRequest;
 use OCA\Circles\Tools\Traits\TStringTools;
+use OCP\Server;
 use ReflectionClass;
 use ReflectionException;
 
@@ -248,7 +249,7 @@ class FederatedEventService extends NCSignature {
 			throw new FederatedEventException($class . ' does not implements IFederatedItem');
 		}
 
-		$item = OC::$server->get($class);
+		$item = Server::get($class);
 		if (!($item instanceof IFederatedItem)) {
 			throw new FederatedEventException($class . ' not an IFederatedItem');
 		}
@@ -396,9 +397,11 @@ class FederatedEventService extends NCSignature {
 		$wrapper->setCreation(time());
 		$wrapper->setSeverity($event->getSeverity());
 
+		$avoidDuplicate = [];
 		if ($event->isAsync()) {
 			$wrapper->setInstance($this->configService->getLoopbackInstance());
 			$this->eventWrapperRequest->save($wrapper);
+			$avoidDuplicate[] = $this->configService->getLoopbackInstance();
 		}
 
 		foreach ($instances as $instance) {
@@ -406,9 +409,15 @@ class FederatedEventService extends NCSignature {
 				break;
 			}
 
+			if (in_array($instance->getInstance(), $avoidDuplicate, true)) {
+				Server::get(\Psr\Log\LoggerInterface::class)->warning('duplicate instance, please verify the setup of Federated Teams', ['duplicate' => $avoidDuplicate, 'loopback' => $this->configService->getLoopbackInstance(), 'instance' => $instance->getInstance(), 'interface' => $instance->getInterface()]);
+				continue;
+			}
+
 			$wrapper->setInstance($instance->getInstance());
 			$wrapper->setInterface($instance->getInterface());
 			$this->eventWrapperRequest->save($wrapper);
+			$avoidDuplicate[] = $wrapper->getInstance();
 		}
 
 		$request = new NCRequest('', Request::TYPE_POST);

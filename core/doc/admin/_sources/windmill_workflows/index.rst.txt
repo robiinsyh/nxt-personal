@@ -43,6 +43,16 @@ This resource includes a **baseUrl** field, which specifies the URL that Windmil
 
 To set the correct URL, navigate to the Windmill interface, go to the **Resources** tab, locate the resource labeled ``u/admin/exapp_resource``, click the three dots on the right, and select the "Edit" button.
 
+Next, navigate to **Settings->Instance->Core** in Windmill and check if the **Base url** for the Windmill instance is correct.
+
+If you are using DockerSocketProxy, the Base URL should be:
+
+    `https://<your-nextcloud-base-url>/index.php/apps/app_api/proxy/flow`
+
+If you are using HaRP (as introduced in Nextcloud 32), the Base URL should be:
+
+    `https://<your-nextcloud-base-url>/exapps/flow`
+
 Building a workflow
 -------------------
 
@@ -50,14 +60,14 @@ Each workflow in Windmill is a listener to a Nextcloud Webhook Event.
 If you are using the ExApp-packaged Windmill, it will automatically register webhooks for the workflows you build using the following mechanism.
 If you are not using the ExApp-packaged windmill install then you will have to register
 webhooks for your workflows manually via the webhook_listeners API:
-see https://docs.nextcloud.com/server/31/developer_manual/_static/openapi.html#/operations/webhook_listeners-webhooks-index
+see https://docs.nextcloud.com/server/latest/developer_manual/_static/openapi.html#/operations/webhook_listeners-webhooks-index
 
 .. TODO ON RELEASE: Update version number above on release
 
 The magic listener script
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first script (after the "Input" block) in any workflow you build that should listen to a Nextcloud webhook must be ``CORE:LISTEN_TO_EVENT``. It must be an empty script with two parameters that you should fill statically: ``events``, which is a list of event IDs to listen to and ``filters`` a filter condition that allows more fine grained filtering for which events should be used. The filter condition as well as the available events with their payloads is documented in :ref:`the webhook_listeners documentation<webhook_listeners>`.
+The first script (after the "Input" block) in any workflow you build that should listen to a Nextcloud webhook must have "Summary" set to the exact, literal string ``CORE:LISTEN_TO_EVENT``. It must be an empty script with two parameters that you should fill statically: ``events``, which is a list of event IDs to listen to and ``filters`` a filter condition that allows more fine grained filtering for which events should be used. The filter condition as well as the available events with their payloads is documented in :ref:`the webhook_listeners documentation<webhook_listeners>`.
 
 You can copy the following Deno script for this:
 
@@ -65,6 +75,7 @@ You can copy the following Deno script for this:
 
    export async function main(events: string[], filters: object) { }
 
+The webhook data will be made available on the flow "Input" block, **not** the ``CORE:LISTEN_TO_EVENT`` block. Updates to the webhook configuration take effect only when the flow is deployed. Consider disabling any schedule for the flow, since it will be started when a webhook is received.
 
 Nextcloud Scripts
 -----------------

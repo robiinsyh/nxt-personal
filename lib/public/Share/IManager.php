@@ -459,6 +459,15 @@ interface IManager {
 	public function matchEmail(): bool;
 
 	/**
+	 * When `allowEnumerationFullMatch` is enabled and `matchUserId` is set,
+	 * then also return results for full user id matches.
+	 *
+	 * @return bool
+	 * @since 32.0.1
+	 */
+	public function matchUserId(): bool;
+
+	/**
 	 * When `allowEnumerationFullMatch` is enabled and `ignoreSecondDisplayName` is set,
 	 * then the search should ignore matches on the second displayname and only use the first.
 	 *
@@ -476,6 +485,14 @@ interface IManager {
 	public function allowCustomTokens(): bool;
 
 	/**
+	 * Check if the current user can view the share
+	 * even if the download is disabled.
+	 *
+	 * @since 32.0.0
+	 */
+	public function allowViewWithoutDownload(): bool;
+
+	/**
 	 * Check if the current user can enumerate the target user
 	 *
 	 * @param IUser|null $currentUser
@@ -488,11 +505,9 @@ interface IManager {
 	/**
 	 * Check if sharing is disabled for the given user
 	 *
-	 * @param string $userId
-	 * @return bool
 	 * @since 9.0.0
 	 */
-	public function sharingDisabledForUser($userId);
+	public function sharingDisabledForUser(?string $userId): bool;
 
 	/**
 	 * Check if outgoing server2server shares are allowed

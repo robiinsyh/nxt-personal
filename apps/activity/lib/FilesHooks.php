@@ -17,6 +17,7 @@ use OCA\Circles\CirclesManager;
 use OCA\Circles\Model\Member;
 use OCA\Files_Sharing\SharedMount;
 use OCP\Activity\IManager;
+use OCP\BackgroundJob\IJobList;
 use OCP\Constants;
 use OCP\Files\Config\IUserMountCache;
 use OCP\Files\File;
@@ -209,7 +210,7 @@ class FilesHooks {
 				$arguments[] = $info['second_path'];
 			}
 
-			\OC::$server->getJobList()->add(RemoteActivity::class, $arguments);
+			\OCP\Server::get(IJobList::class)->add(RemoteActivity::class, $arguments);
 		}
 	}
 
@@ -1061,12 +1062,7 @@ class FilesHooks {
 			return;
 		}
 		if (!$path) {
-			try {
-				$path = $this->getUserRelativePath($sharer, $fileSource->getPath());
-			} catch (NotFoundException $e) {
-				$this->logger->warning('Could not create unsharing notification for user ' . $sharer . ' :' . $e->getMessage(), ['exception' => $e]);
-				return;
-			}
+			$path = $this->getUserRelativePath($sharer, $fileSource->getPath());
 		}
 
 		$this->addNotificationsForUser(
@@ -1183,7 +1179,7 @@ class FilesHooks {
 		$activityId = $this->activityData->send($event);
 
 		if ($activityId && !$selfAction && $notificationSetting) {
-			$this->notificationGenerator->sendNotificationForEvent($event, $activityId);
+			$this->notificationGenerator->sendNotificationForEvent($event, $activityId, $notificationSetting);
 		}
 
 		// Add activity to mail queue
@@ -1247,8 +1243,8 @@ class FilesHooks {
 		/** @var \OCA\GroupFolders\ACL\RuleManager $ruleManager */
 		/** @var \OCA\GroupFolders\Folder\FolderManager $folderManager */
 		try {
-			$ruleManager = \OC::$server->get(\OCA\GroupFolders\ACL\RuleManager::class);
-			$folderManager = \OC::$server->get(\OCA\GroupFolders\Folder\FolderManager::class);
+			$ruleManager = \OCP\Server::get(\OCA\GroupFolders\ACL\RuleManager::class);
+			$folderManager = \OCP\Server::get(\OCA\GroupFolders\Folder\FolderManager::class);
 		} catch (\Throwable $e) {
 			return []; // if we have no access to RuleManager, we cannot filter unrelated users
 		}

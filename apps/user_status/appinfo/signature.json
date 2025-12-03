@@ -1,6 +1,6 @@
 {
     "hashes": {
-        "appinfo\/info.xml": "d1316f05b3a125236eb46bb0dee443052e006b0d6e09e6d8f4c9f467eb491454306b0602a0a1d3c797e228b28d1f978b37b00a2b1e0334229ddc0ddda4d7d9c6",
+        "appinfo\/info.xml": "83c2778d9dcc1f2e2dd68f8b51009ceefa63aac45670ee7cbaf40b278cb40b6ff99d78d0d274bdd9913f860ded6d3f217b432cb91e746b558cdcb205dd1b57eb",
         "composer\/autoload.php": "9f6d52deba8939d8c42571620a29671219bbddc690151eed5dfdc63cf0f3f3762cfa856ce2e4bc98c63c78cf6cef450fc3252ee586ab741a31eecb75b0ce2a7b",
         "composer\/composer.json": "7c231052d3a23ecff841a2dc15be038b714cde851090895f2b5b34ddbf00359e1776858cef51ede30958368e4dc2850700e6dc3b95c073da6f60db25944e5319",
         "composer\/composer.lock": "aba0413aa705be0d0570c496a43249c551836824e7a2b4673b51838fe0d9f425ddd07b6c4b95aa74ca549f58e90f2a7d78b51a2a3080749a5dc2e4a46d04fd1e",
@@ -18,8 +18,8 @@
         "css\/user-status-menu.css.map": "8e18d9c1f824bcea16e9810b46a6d158ad7367331996bd4be9126f2831fc632bae1ea9740d9a60c7bd12592e7078986d8d72971500e8665eb1b321626cf950e5",
         "css\/user-status-menu.css.map.license": "e2b57c2f18f146a2546b06f2930bd7f6c817a0f29d93ef1d51d2a34dc18d59bee5b78563d0b2267b234fb3ceda4a5901687ea2143fe1869d3955f015e736557d",
         "css\/user-status-menu.scss": "5210b798c12abc5b8ccc40129de700e3bed6dcda83205f37cfbb36272ace2fc9ed66af89aec158c0ff428614b80064dc2ef295818c7c6e2a51ad5b1db3458863",
-        "img\/app-dark.svg": "503addb3b6d53742b162dd40da3bbcff9c1ebe09eeeadb2c273bbdd67cf83d30532bf278fe471fe2d37ab88b9ca77a9f93f4c8d6939d8c90a111fbe74418d9d1",
-        "img\/app.svg": "96f6fb4e73cfd1c800dd74d7f849d132d675975dbf416c755f5025814c8ce0d956c132f49cf5b100aaad72e28bc311ed2d9e3cd132bcc27ac6c86ff118beca6d",
+        "img\/app-dark.svg": "1b73e0b3d5be7f1cfc600366110deca486c1d0e948af95a4c4c1d41810524c5fc96ae52287f8b97e7aab69fd8e80184f5fc395bb3f96a67dda6f9bf6ed6f5d61",
+        "img\/app.svg": "416a41f4ab1bfef81b30920e27cde59a40cbd51755c68ccbc488a7333a2b3c4d0305a977d20804988133b230503a42f67d7f62e6cf276fa226b9f3281edae743",
         "l10n\/af.js": "bd8de38c9798b33de32080e6410b6403871394908fab3de1f9a12ba8e97eb532911dc49c863671e6f91c22d78b93de7c2e9bf6a668a6775e189ec120d325dc18",
         "l10n\/af.json": "9f16250a2f96abc8a8b8ed88edc3a0ea0fb499068e47c46721db9cb93888546fa8e908419cfd1d72440a3f82bfbd1f1dd4a0c6d9f6b9418dcf332112d562de3b",
         "l10n\/ar.js": "4ab7b7bb369a92c98a501f2973c672ec8a9d3870c445b84cf925c67e6a255ff2717f1df2dbb604923d635824de26c65265984591f9f49d2646cf97e5a5b9b707",
@@ -134,7 +134,7 @@
         "l10n\/zh_TW.json": "34cd97476fa0f64bbb14d80d6aff0da851941ff369b44a380a943eddb017d5d21d850f1d0306a477195a8ff65938b5120715843842d10d94f647e5185f7a4f34",
         "lib\/AppInfo\/Application.php": "9246ff81fa195b310c4b59e05bb4283bb7c9b1b1a93d01d41b0fd28eda7e3585bcb1a23decc29046813bf0ac42064b02066c90c57c91702ef1eb9f4a4f28456b",
         "lib\/BackgroundJob\/ClearOldStatusesBackgroundJob.php": "0d789e30e84ffc5bf91fd3847cd9f0b994316840d5588dddf02fca291e51e823b07b6d2db14728f72bb45cc9e74b77198b19668f1db1fb012158175d2bcfe603",
-        "lib\/Capabilities.php": "fc6f864b1765f83734ea509cac0405c59b7927876a9fd2525dccefbfa46c7feb6363785881d2be7dceed4166e8513ba30a39ab38ff5fb189c8c9a3b9f174dfe9",
+        "lib\/Capabilities.php": "bb6cff374c004031ba51d8fea1be3777dc03f85406c13a97c6b7c2c6314ed9028e5606eef2d81e2531d1c4285f5c4e396bbfff12e2207eed5608e22f02c9e43b",
         "lib\/Connector\/UserStatus.php": "4303002f5f63aad0358ab6e3eff054e7fe8804aa3ee732751cc6d8b8fdda260001c3149dcaac2a26936e3d4f8f92f3ebc893bc48d4853a548e42126e6e340494",
         "lib\/Connector\/UserStatusProvider.php": "1d58bdb1952d83110d6e608817039e4a172e61de1eb488d61b90540ee86950b3cd9314ff4c4450c022c4c695a831b26362c2e4d5d3e71445236697f5872c9401",
         "lib\/ContactsMenu\/StatusProvider.php": "d932c6ef9c6a2b8c86d80688958cd11b1c2d77e1b929940caa394bb34d459845a248ea16af92b92bc0f54bd3aa0b66fe80e52aec5d801241c8540ae6da8b559e",
@@ -153,7 +153,7 @@
         "lib\/Listener\/BeforeTemplateRenderedListener.php": "6abf4470ded36fc1acee6ba6a224db08c1546a54244e05440ccff754c9b78fde9bfa536a4194778e3a66933d632b86ab2c5af7d0bf9c796ebbdcef21d4011614",
         "lib\/Listener\/OutOfOfficeStatusListener.php": "ee5342bfc9ad3fb1c18344166cfc570ebeda08772f86da8ccf8368b96fb1609817841904e640c6ad10fa18318d2ffd101370cf08d7b522001794cfaad7b04e44",
         "lib\/Listener\/UserDeletedListener.php": "45f5aa5ed2a5234d3a590da5085aeb50a89c43e08c0f226f2a2e89b867e71993e9adc179c8fed16c59fc28b5a23bab829982bf8d2fbf782ffb06b785b3d42929",
-        "lib\/Listener\/UserLiveStatusListener.php": "f46d78b017b1c2427d5bab1a73f7ce8985677ce623bf210f1a22e2ae74a878af2decc81cc3905e7f06c09658e0758cebf29b48095c69080a48d96fcf09da00c3",
+        "lib\/Listener\/UserLiveStatusListener.php": "e9f540c1d98c5993840236f43f90da65dc981be556f9425d41aba9b8c88e3975f2eb41a0f3f25bf8f62d545f1183ca5b4740a78b494d8055d1b626522d86658e",
         "lib\/Migration\/Version0001Date20200602134824.php": "a0c7b94bd2700a49ac1dc83f74703e7abc1076a839a3dd3494209907ae2208085676c0daaac30c0a1c89bf2ab36efc7e86b527559a627573169a556b87ab5e2a",
         "lib\/Migration\/Version0002Date20200902144824.php": "65644ca1c9941d7228946a01e05083fa86340cbe47b5109142bebdb227e646f0c3a3d75850fe30c0e932dc4a8215cd0d91245f813c4658fa52b4b7f3dc1da9a1",
         "lib\/Migration\/Version1000Date20201111130204.php": "e054fe698528d412e02558c41a880d940c481756bff29e7862187961bbe6e953eb4ded6e1495d857eec1647263956beb5b7cea09cb841f149466adeac98bf864",
@@ -161,11 +161,11 @@
         "lib\/Migration\/Version1008Date20230921144701.php": "6b0cae0baf49dbb2dca69fa7090c1cc66fdef68b1d5bc61731c5ea90e4d41600c3869ccc9fc7a71ead0a2a6b532e84f9bbcdccb0f9b9d5307247d6d801509046",
         "lib\/ResponseDefinitions.php": "8c5c7d76718556489f2afab0330ae231cdbdff34f9ec5d65a29b4a2f7cfb079bba9bbdc8da09ffa3e9ff91ebc2a57cee27a97b22171ea095c9925309e62cefea",
         "lib\/Service\/JSDataService.php": "4d92fedae12c9640a0b46cf5d1ef75aeb479a80c14a669025f8f94b1c5ba2c147622f1b35940736cbac282334a1a2b3ccdb9bd24ea66ab55bb114f39483b5f63",
-        "lib\/Service\/PredefinedStatusService.php": "f65e15f9076b190d2c8ca70d8fa59d4bd49a9a70b53632cde8e10a45b3122bf7a1050b7328aeddf73016f5ffb4ffa959360770b8ceb680aff79efb083c794017",
+        "lib\/Service\/PredefinedStatusService.php": "8fc6c8beea4e9be8813f0c9add0fd3d6958caf7284cbce9b885b496918afd30ede66a9eb4c210a1a26ec121ea1dc24269c80e8d80015c3d329c01a71bb9fa051",
         "lib\/Service\/StatusService.php": "bafb7cbf2b9fc29e061616b4efdb6ef30aec8850ff4b20b32e357fbc2c3274dffb09e6210faa84a8dff6aedb1f80cd3b8aa59ad1e4fa526d4391f2b42e715c30",
-        "openapi.json": "d9e371abf71a7bc1512a8b7986f5a3d8f373f4f62a6016947755532e2420ba215d0377e9a24820eee04da3b221568ebc77729f2bba27391e2a79765a5e663ef8",
+        "openapi.json": "2ff59c1c2f1118ef33a4de318438c2c91856c9066d6fde5cc7ba6cd388e82203aae414ff4e3aafadda8f604655b680dd69148a0bfc25a7acffda4311101161ae",
         "openapi.json.license": "6e88996074644faaac012c0d3075ca173ec8195a44a7ce5c7296f6d700cefe799eddc86b049ddadbda90f7082f9f98128a7fe129acc876cb98281ed25d038e4d"
     },
-    "signature": "dSkdIG7zmaV\/3AjwvYhIcIbKe6ZKQONE2LsdLsCy3kP6AZ47+j6TehRSS01sIYQ023OHU8eHTMewGeZdVbUbnA+Jhl1sz8SU+lY2K5R6rn7uF7UItNGpwOzYz56YolaRXyVdsJcVHvj9oUbcmb+vhVp34CrqvHFmojwuFU\/qVlnCicleo5AHSgGcleMBclZJOYOJn\/1bwHpN88XTxHnKLP0nxEkqobhz\/64wKG4grlC6r+90B5ObFAmfReLBY\/HZ0izBnMDCu\/f3Xvmv5AOEDETxWcoXaGOkb1siM74RXl\/+k410wWeY1Y2Ceg3BYl1hkYypPC8nFgxb4ELkf3DYiQ==",
+    "signature": "QOwilC33IkgPCbEjkhlpGW7H497hs0pJrU\/Whisau\/D8FNOZb2mmiykdnbgsz2w1iADYagDHpWejn7MmaiUqRq6wiCkRKkPfFNK8haSGTTK8r3OVVYUBaxxktunRT4mQJaNprCmJSAIfEmMu8CgdjzE5Lud54do4SBF9T7aiE2RIjccja6KsDWyR8pZDxNfOsxb3V5qrQYv3MKNRAb0u\/aIA4Y9aI6noD+alKTe+0ySnUMRRJCiVG4RyrORjvN4c\/4JGkqdIU3sGb6WggewS7PVErfhlQD7vrGW8bqky77Ax5\/zU3mYBD27kddVLZuNuX1UnEZ2sQNbsjj1K8MG4qg==",
     "certificate": "-----BEGIN CERTIFICATE-----\r\nMIIEojCCA4qgAwIBAgICEAAwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCREUx\r\nGzAZBgNVBAgMEkJhZGVuLVd1ZXJ0dGVtYmVyZzEXMBUGA1UECgwOTmV4dGNsb3Vk\r\nIEdtYkgxNjA0BgNVBAMMLU5leHRjbG91ZCBDb2RlIFNpZ25pbmcgSW50ZXJtZWRp\r\nYXRlIEF1dGhvcml0eTAeFw0xNjA2MTIyMTA1MDZaFw00MTA2MDYyMTA1MDZaMGYx\r\nCzAJBgNVBAYTAkRFMRswGQYDVQQIDBJCYWRlbi1XdWVydHRlbWJlcmcxEjAQBgNV\r\nBAcMCVN0dXR0Z2FydDEXMBUGA1UECgwOTmV4dGNsb3VkIEdtYkgxDTALBgNVBAMM\r\nBGNvcmUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDUxcrn2DC892IX\r\n8+dJjZVh9YeHF65n2ha886oeAizOuHBdWBfzqt+GoUYTOjqZF93HZMcwy0P+xyCf\r\nQqak5Ke9dybN06RXUuGP45k9UYBp03qzlUzCDalrkj+Jd30LqcSC1sjRTsfuhc+u\r\nvH1IBuBnf7SMUJUcoEffbmmpAPlEcLHxlUGlGnz0q1e8UFzjbEFj3JucMO4ys35F\r\nqZS4dhvCngQhRW3DaMlQLXEUL9k3kFV+BzlkPzVZEtSmk4HJujFCnZj1vMcjQBg\/\r\nBqq1HCmUB6tulnGcxUzt\/Z\/oSIgnuGyENeke077W3EyryINL7EIyD4Xp7sxLizTM\r\nFCFCjjH1AgMBAAGjggFDMIIBPzAJBgNVHRMEAjAAMBEGCWCGSAGG+EIBAQQEAwIG\r\nQDAzBglghkgBhvhCAQ0EJhYkT3BlblNTTCBHZW5lcmF0ZWQgU2VydmVyIENlcnRp\r\nZmljYXRlMB0GA1UdDgQWBBQwc1H9AL8pRlW2e5SLCfPPqtqc0DCBpQYDVR0jBIGd\r\nMIGagBRt6m6qqTcsPIktFz79Ru7DnnjtdKF+pHwwejELMAkGA1UEBhMCREUxGzAZ\r\nBgNVBAgMEkJhZGVuLVd1ZXJ0dGVtYmVyZzESMBAGA1UEBwwJU3R1dHRnYXJ0MRcw\r\nFQYDVQQKDA5OZXh0Y2xvdWQgR21iSDEhMB8GA1UEAwwYTmV4dGNsb3VkIFJvb3Qg\r\nQXV0aG9yaXR5ggIQADAOBgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUH\r\nAwEwDQYJKoZIhvcNAQELBQADggEBADZ6+HV\/+0NEH3nahTBFxO6nKyR\/VWigACH0\r\nnaV0ecTcoQwDjKDNNFr+4S1WlHdwITlnNabC7v9rZ\/6QvbkrOTuO9fOR6azp1EwW\r\n2pixWqj0Sb9\/dSIVRpSq+jpBE6JAiX44dSR7zoBxRB8DgVO2Afy0s80xEpr5JAzb\r\nNYuPS7M5UHdAv2dr16fDcDIvn+vk92KpNh1NTeZFjBbRVQ9DXrgkRGW34TK8uSLI\r\nYG6jnfJ6eJgTaO431ywWPXNg1mUMaT\/+QBOgB299QVCKQU+lcZWptQt+RdsJUm46\r\nNY\/nARy4Oi4uOe88SuWITj9KhrFmEvrUlgM8FvoXA1ldrR7KiEg=\r\n-----END CERTIFICATE-----"
 }

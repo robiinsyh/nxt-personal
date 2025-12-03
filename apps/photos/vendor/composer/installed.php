@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'nextcloud/photos',
-        'pretty_version' => 'dev-stable31',
-        'version' => 'dev-stable31',
-        'reference' => 'ce9192d3d0a1df2b93f50e6571ebe2e8810ce06a',
+        'pretty_version' => 'dev-stable32',
+        'version' => 'dev-stable32',
+        'reference' => '8f81cc3a99464738ccdcc10da777db1aea6a7dc3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'nextcloud/photos' => array(
-            'pretty_version' => 'dev-stable31',
-            'version' => 'dev-stable31',
-            'reference' => 'ce9192d3d0a1df2b93f50e6571ebe2e8810ce06a',
+            'pretty_version' => 'dev-stable32',
+            'version' => 'dev-stable32',
+            'reference' => '8f81cc3a99464738ccdcc10da777db1aea6a7dc3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

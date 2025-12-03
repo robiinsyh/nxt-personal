@@ -221,8 +221,6 @@ These include:
 
 - ``X-Content-Type-Options: nosniff``
 	- Instructs some browsers to not sniff the mimetype of files. This is used for example to prevent browsers from interpreting text files as JavaScript.
-- ``X-XSS-Protection: 1; mode=block``
-	- Instructs browsers to enable their browser side Cross-Site-Scripting filter.
 - ``X-Robots-Tag: noindex, nofollow``
 	- Instructs search machines to not index these pages and not follow any links there.
 - ``X-Frame-Options: SAMEORIGIN``
@@ -256,7 +254,7 @@ Connections to remote servers
 -----------------------------
 
 Some functionalities require the Nextcloud server to be able to connect remote systems via https/443.
-This pragraph also includes the data which is being transmitted to the Nextcloud GmbH.
+This paragraph also includes the data which is being transmitted to the Nextcloud GmbH.
 Depending on your server setup, these are the possible connections:
 
 - nextcloud.com, startpage.com, eff.org, edri.org
@@ -274,6 +272,7 @@ Depending on your server setup, these are the possible connections:
 	- submitted data: subscription key
 - github.com, objects.githubusercontent.com, release-assets.githubusercontent.com
 	- to download Nextcloud standard apps
+	- to download Nextcloud server releases
 - push-notifications.nextcloud.com
 	- sending push notifications to mobile clients
 	- submitted data: unique device identifier, public key, push token
@@ -291,7 +290,7 @@ Depending on your server setup, these are the possible connections:
 - Any remote Nextcloud server that is connected with federated sharing
 - When downloading apps from the App store other domains might be accessed, based on the choice of the app developers where they host the releases. For all official Nextcloud apps this is not the case though, because they are hosted on Github.
 
-.. _optional (config): https://docs.nextcloud.com/server/31/admin_manual/configuration_server/config_sample_php_parameters.html#has-internet-connection
+.. _optional (config): https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#has-internet-connection
 .. _detailed field list : https://github.com/nextcloud/survey_client
 
 .. TODO ON RELEASE: Update version number above on release

@@ -17,7 +17,7 @@ You can install the *assistant* app via the "Apps" page in Nextcloud, or by exec
 
 .. code-block::
 
-   php occ app:enable assistant
+   sudo -E -u www-data php occ app:enable assistant
 
 App store
 ---------
@@ -66,6 +66,7 @@ In order to make use of text processing features in the assistant, you will need
 
 * :ref:`llm2<ai-app-llm2>` - Runs open source AI language models locally on your own server hardware (Customer support available upon request)
 * *integration_openai* - Integrates with the OpenAI API to provide AI functionality from OpenAI servers  (Customer support available upon request; see :ref:`AI as a Service<ai-ai_as_a_service>`)
+* *integration_watsonx* - Integrates with the IBM watsonx.ai API to provide AI functionality from IBM Cloud servers  (Customer support available upon request; see :ref:`AI as a Service<ai-ai_as_a_service>`)
 
 These apps currently implement the following Assistant Tasks:
 
@@ -73,11 +74,8 @@ These apps currently implement the following Assistant Tasks:
 * *Summarize* (Tested with OpenAI GPT-3.5 and Llama 3.1 8B)
 * *Generate headline* (Tested with OpenAI GPT-3.5 and Llama 3.1 8B)
 * *Extract topics* (Tested with OpenAI GPT-3.5 and Llama 3.1 8B)
-
-Additionally, *integration_openai* also implements the following Assistant Tasks:
-
-* *Context write* (Tested with OpenAI GPT-3.5)
-* *Reformulate text* (Tested with OpenAI GPT-3.5)
+* *Context write* (Tested with OpenAI GPT-3.5 and Llama 3.1 8B)
+* *Reformulate text* (Tested with OpenAI GPT-3.5 and Llama 3.1 8B)
 
 These tasks may work with other models, but we can give no guarantees.
 
@@ -97,7 +95,7 @@ In order to make use of our special Context Chat feature, offering in-context in
 
 * :ref:`context_chat + context_chat_backend<ai-app-context_chat>` -  (Customer support available upon request)
 
-You will also need a text processing provider as specified above (ie. llm2 or integration_openai).
+You will also need a text processing provider as specified above (ie. llm2, integration_openai or integration_watsonx).
 
 Context Agent
 ~~~~~~~~~~~~~
@@ -109,6 +107,14 @@ In order to make use of our AI agent feature, offering the execution of actions 
 
 
 You will also need a text processing provider as specified above (ie. *llm2* or *integration_openai*).
+
+Text-To-Speech
+~~~~~~~~~~~~~~
+
+In order to make use of Text-To-Speech, you will need an app that provides a Text-To-Speech backend:
+
+* *integration_openai* - Integrates with the OpenAI API to provide AI functionality from OpenAI servers  (Customer support available upon request; see :ref:`AI as a Service<ai-ai_as_a_service>`)
+* *text2speech_kokoro* - Runs a local model
 
 Configuration
 -------------
@@ -186,6 +192,14 @@ Set 1 to enable and 0 to disable an implemented task type.
    occ taskprocessing:task:stats
 
 shows statistics for all task processing Tasks.
+
+5. Clean-up old tasks
+
+.. code-block::
+
+   occ taskprocessing:task:cleanup
+
+delete tasks that are older than this number of seconds, defaults to 4 months.
 
 Image storage
 ~~~~~~~~~~~~~

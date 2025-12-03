@@ -30,7 +30,7 @@ Hide export buttons
 
 By default users can export their calendar data from the event editor. Admins can disable this feature::
 
- php occ config:app:set calendar hideEventExport --value=yes
+ sudo -E -u www-data php occ config:app:set calendar hideEventExport --value=yes
 
 Invitations
 -----------
@@ -71,7 +71,7 @@ See :doc:`../occ_command` section Dav commands.
 
 You'll also need to change the sending mode from ``background-job`` to ``occ``::
 
- php occ config:app:set dav sendEventRemindersMode --value occ
+ sudo -E -u www-data php occ config:app:set dav sendEventRemindersMode --value occ
 
 If you don't use this dedicated command, the reminders will just be sent as soon as possible when the background jobs run.
 
@@ -92,7 +92,7 @@ FreeBusy
 When logged-in, Nextcloud can return FreeBusy information for all users of the instance, to know when they are available so that you can schedule an event at the right time.
 If you don't wish for users to have this capability, you can disable FreeBusy for the whole instance with the following setting::
 
- php occ config:app:set dav disableFreeBusy --value yes
+ sudo -E -u www-data php occ config:app:set dav disableFreeBusy --value yes
 
 Subscriptions
 -------------
@@ -103,7 +103,7 @@ Custom public calendars
 In addition to the public holiday calendars, it is possible to define your own calendar.
 They act in the same way as the holiday calendars and can be configured with the following command::
 
- php occ config:app:set calendar publicCalendars --value '[{"name":"My custom calendar","source":"http://example.com/example.ics"}]'
+ sudo -E -u www-data php occ config:app:set calendar publicCalendars --value '[{"name":"My custom calendar","source":"http://example.com/example.ics"}]'
 
 The setting is specified as a JSON array of objects with the following options:
 
@@ -122,7 +122,7 @@ Otherwise the default refresh rate is one day.
 
 To set up a different default refresh rate for calendars without server side refresh rates, change the ``calendarSubscriptionRefreshRate`` option::
 
- php occ config:app:set dav calendarSubscriptionRefreshRate --value "PT6H"
+ sudo -E -u www-data php occ config:app:set dav calendarSubscriptionRefreshRate --value "PT6H"
 
 Where the value is a `DateInterval <https://www.php.net/manual/dateinterval.construct.php>`_, for instance with the above command all of the Nextcloud instance's calendars would be refreshed every 6 hours.
 
@@ -132,7 +132,24 @@ Allow subscriptions on local network
 Because of security issues, Nextcloud forbids subscriptions from local network hosts.
 If you need to allow this, change the following parameter to::
 
- php occ config:app:set dav webcalAllowLocalAccess --value yes
+ sudo -E -u www-data php occ config:app:set dav webcalAllowLocalAccess --value yes
+
+Federated calendar shares
+-------------------------
+
+.. versionadded:: 32.0.0
+
+Nextcloud supports creating read-only federated calendar shares.
+A user is able to share a calendar with a remote user on a federated instance.
+For now, the shares are read-only and remote users are not able to change the events inside the
+shared calendar.
+
+The feature can be optionally disabled through an app config.
+Run the following command to disable creating new federated calendar shares for all users::
+
+  sudo -E -u www-data php occ config:app:set dav enableCalendarFederation --type=bool --value=false
+
+Note that existing shares will be deleted when the feature is disabled as they will fail to sync.
 
 Trash bin
 ---------
@@ -143,7 +160,7 @@ The default delay before objects are purged from the trash bin is 30 days. A bac
 
 To set up a different retention period, change the ``calendarRetentionObligation`` option::
 
- php occ config:app:set dav calendarRetentionObligation --value=2592000
+ sudo -E -u www-data php occ config:app:set dav calendarRetentionObligation --value=2592000
 
 Where the value is the number of seconds for the period. Setting the value to ``0`` disables the trash bin.
 
@@ -167,15 +184,63 @@ Rate limits
 Nextcloud rate limits the creation of calendars and subscriptions if too many items are created within a short time frame. The default is 10 calendars or subscriptions per hour. This can be customized as follows::
 
   # Set limit to 15 items per 30 minutes
-  php occ config:app:set dav rateLimitCalendarCreation --type=integer --value=15
-  php occ config:app:set dav rateLimitPeriodCalendarCreation --type=integer --value=1800
+  sudo -E -u www-data php occ config:app:set dav rateLimitCalendarCreation --type=integer --value=15
+  sudo -E -u www-data php occ config:app:set dav rateLimitPeriodCalendarCreation --type=integer --value=1800
 
 Additionally, the maximum number of calendars and subscriptions a user may create is limited to 30 items. This can be customized too::
 
   # Allow users to create 50 calendars/subscriptions
-  php occ config:app:set dav maximumCalendarsSubscriptions --type=integer --value=50
+  sudo -E -u www-data php occ config:app:set dav maximumCalendarsSubscriptions --type=integer --value=50
 
 or::
 
   # Allow users to create calendars/subscriptions without restriction
-  php occ config:app:set dav maximumCalendarsSubscriptions --type=integer --value=-1
+  sudo -E -u www-data php occ config:app:set dav maximumCalendarsSubscriptions --type=integer --value=-1
+
+Example event
+-------------
+
+.. versionadded:: 32.0.0
+
+When a user logs in for the first time an example event is created in their personal calendar.
+As an admin, you can disable the creation of the example event.
+It is also possible to replace the default event with a custom one.
+
+To disable the creation of the example event for new users:
+
+1. Navigate to the Groupware settings in the admin settings.
+2. Scroll down to the "Example content" section.
+3. Disable the "Add example event ..." setting with the checkbox
+
+To replace the built-in default event with a custom one:
+
+1. Navigate to the Groupware settings in the admin settings.
+2. Press the "Import calendar event" button.
+3. Choose an ICS file to be imported.
+
+.. note:: The start and end date will be overwritten with dates in the future when a custom event
+   is supplied to ensure that the user sees the event.
+
+It is also possible to revert to the default built-in event by pressing the "Reset to default"
+button next to the import button.
+
+.. _caldav-data-retention:
+
+Data retention
+--------------
+
+.. versionadded:: 26.0.0
+
+You can configure how long Nextcloud keeps some of the calendar sync tokens.
+
+Sync tokens
+~~~~~~~~~~~
+
+The CalDAV backend keeps track of any modifications of calendars. That is anything added, modified or removed. The data is used for differential synchronization of offline clients like Thunderbird. At a certain point in time, the data can be considered outdated assuming there will be no more client needing it. This can help keep the database table `calendarchanges` small::
+
+  sudo -E -u www-data php occ config:app:set totalNumberOfSyncTokensToKeep --value=30000
+
+The default is keeping 10,000 entries. This option should be set adequate to the number of users. E.g. on an installation with 5000 active synced calendars the system would only keep an average of 10 changes per calendar. This will lead to premature data deletion and synchronization problems.
+
+
+.. warning:: This setting will also influence :ref:`CardDAV data retention<carddav-data-retention>`.

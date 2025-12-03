@@ -7,6 +7,7 @@
  */
 namespace OCP\Files;
 
+use OCP\AppFramework\Attribute\Consumable;
 use OCP\Files\Storage\IStorage;
 
 /**
@@ -14,6 +15,7 @@ use OCP\Files\Storage\IStorage;
  *
  * @since 7.0.0
  */
+#[Consumable(since: '7.0.0')]
 interface FileInfo {
 	/**
 	 * @since 7.0.0

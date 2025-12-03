@@ -12,6 +12,7 @@ use OC\AppFramework\Utility\TimeFactory;
 use OC\Authentication\Events\AppPasswordCreatedEvent;
 use OC\Authentication\Token\IProvider;
 use OC\Server;
+use OCA\Settings\ConfigLexicon;
 use OCA\Settings\Hooks;
 use OCA\Settings\Listener\AppPasswordCreatedActivityListener;
 use OCA\Settings\Listener\GroupRemovedListener;
@@ -112,6 +113,8 @@ class Application extends App implements IBootstrap {
 		$context->registerSearchProvider(AppSearch::class);
 		$context->registerSearchProvider(UserSearch::class);
 
+		$context->registerConfigLexicon(ConfigLexicon::class);
+
 		// Register listeners
 		$context->registerEventListener(AppPasswordCreatedEvent::class, AppPasswordCreatedActivityListener::class);
 		$context->registerEventListener(UserAddedEvent::class, UserAddedToGroupActivityListener::class);
@@ -132,15 +135,6 @@ class Application extends App implements IBootstrap {
 		/**
 		 * Core class wrappers
 		 */
-		/** FIXME: Remove once OC_SubAdmin is non-static and mockable */
-		$context->registerService('isSubAdmin', function () {
-			$userObject = \OC::$server->getUserSession()->getUser();
-			$isSubAdmin = false;
-			if ($userObject !== null) {
-				$isSubAdmin = \OC::$server->getGroupManager()->getSubAdmin()->isSubAdmin($userObject);
-			}
-			return $isSubAdmin;
-		});
 		$context->registerService(IProvider::class, function (IAppContainer $appContainer) {
 			/** @var IServerContainer $serverContainer */
 			$serverContainer = $appContainer->query(IServerContainer::class);
