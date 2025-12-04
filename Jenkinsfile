@@ -24,10 +24,9 @@ pipeline{
                     ${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=nxt-personal \
                     -Dsonar.projectName=finance-note \
                     -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sources=. \
+                    -Dsonar.sources=containerization/ \
                     -Dsonar.language=php \
                     -Dsonar.sourceEncoding=UTF-8
-                    -Dsonar.exclusions=**/3rdparty/**,**/core/**,**/apps/**,**/lib/**,**/dist/**,**/config/**,**/resources/**,**/updater/**,**/themes/**,**/ocs/**,**/ocs-provider/**,**/containerization/**
                     '''
                 }
             }
