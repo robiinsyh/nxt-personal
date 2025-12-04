@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libfreetype6-dev \
     pkg-config \
+    libonig-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
