@@ -1,6 +1,11 @@
 pipeline{
     agent any
 
+    environment{
+        DOCKER_IMAGE = 'robi741/nxt-app'
+        DOCKER_TAG = 'latest'
+        DOCKER_PATH = 'containerization/nxt-app/.'
+    }
     stages{
         stage('Fetch Code'){
             steps{
@@ -38,6 +43,17 @@ pipeline{
                     waitForQualityGate abortPipeline: true
                 }
             }
+       }
+//Build Docker Image And Push to Dockerhub
+       stage('build docker image'){
+        steps{
+            script{
+                docker.withRegistry('https://index.docker.io/v1/', 'docker-creds') {
+                    def nxtApp = docker.build("$DOCKER_IMAGE:$env.BUILD_NUMBER", "$DOCKER_PATH")
+                    nxtApp.push()
+            }
+        }
        }       
     }
+}
 }
