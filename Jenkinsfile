@@ -5,6 +5,7 @@ pipeline{
         DOCKER_IMAGE = 'robi741/nxt-app'
         DOCKER_TAG = 'latest'
         DOCKER_PATH = 'containerization/nxt-app/.'
+        DOCKER_BUILDKIT = "1"
     }
     stages{
         stage('Fetch Code'){
