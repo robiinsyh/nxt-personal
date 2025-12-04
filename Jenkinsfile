@@ -27,7 +27,7 @@ pipeline{
                     -Dsonar.sources=. \
                     -Dsonar.language=php \
                     -Dsonar.sourceEncoding=UTF-8
-                    -Dsonar.exclusions=3rdparty/**,core/**,apps/**,lib/**,dist/**,config/**,resources/**,updater/**,themes/**,ocs/**,ocs-provider/**,containerization/**
+                    -Dsonar.exclusions=**/3rdparty/**,**/core/**,**/apps/**,**/lib/**,**/dist/**,**/config/**,**/resources/**,**/updater/**,**/themes/**,**/ocs/**,**/ocs-provider/**,**/containerization/**
                     '''
                 }
             }
