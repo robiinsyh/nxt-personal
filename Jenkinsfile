@@ -22,7 +22,7 @@ pipeline{
                 withSonarQubeEnv('sonarserver'){
                     sh '''
                     ${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=nxt-personal \
-                    -Dsonar.projectName=finance-note \
+                    -Dsonar.projectName=nxt-personal \
                     -Dsonar.projectVersion=1.0 \
                     -Dsonar.sources=lib/public \
                     -Dsonar.language=php \
