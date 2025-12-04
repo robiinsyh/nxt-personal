@@ -49,7 +49,7 @@ pipeline{
         steps{
             script{
                 docker.withRegistry('https://index.docker.io/v1/', 'docker-creds') {
-                    def nxtApp = docker.build("$DOCKER_IMAGE:$env.BUILD_NUMBER", "$DOCKER_PATH")
+                    def nxtApp = docker.build("$DOCKER_IMAGE:$env.BUILD_NUMBER", "--cpus=2 --memory=4g $DOCKER_PATH")
                     nxtApp.push()
             }
         }
