@@ -16,6 +16,7 @@ pipeline{
        stage('Sonarqube Anlysis'){
             environment{
                 scannerHome = tool 'sonar6.2'
+                SONAR_SCANNER_OPTS = "-Xmx1024m"
             }
             steps{
                 withSonarQubeEnv('sonarserver'){
