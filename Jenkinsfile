@@ -13,17 +13,23 @@ pipeline{
                 echo "Building Nextcloud Personal Edition Docker Image"
             }
         }
-        stage('analyze code with sonarQube'){
-            withSonarQubeEnv('sonarserver'){
-                sh '''
-                    ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=nxt-personal \
-                    -Dsonar.projectName="nxt-personal" \
+       stage('Sonarqube Anlysis'){
+            environment{
+                scannerHome = tool 'sonar6.2'
+            }
+            steps{
+                withSonarQubeEnv('sonarserver'){
+                    sh '''
+                    ${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=nxt-personal \
+                    -Dsonar.projectName=finance-note \
                     -Dsonar.projectVersion=1.0 \
                     -Dsonar.sources=. \
-                    -Dsonar.sourceEncoding=UTF-8 \
-                '''
+                    -Dsonar.language=php \
+                    -Dsonar.sourceEncoding=UTF-8
+                    '''
+                }
             }
-        }
+       }
 
         stage('Quality Gate'){
             steps{
