@@ -1,22 +1,40 @@
 FROM php:8.4-apache
-RUN apt-get update && apt-get install -y git libzip-dev libgmp-dev libxml2-dev libjpeg-dev libpng-dev libpq-dev libldap2-dev libicu-dev libmagickwand-dev unzip  && \
-    docker-php-ext-install zip pdo pdo_mysql\
-        gd \
-        zip \
-        intl \
-        opcache \
-        pdo \
-        ldap \
-        bcmath \
-        gmp \
-        pcntl \
-        mbstring \
-        xml \
-        imagick \
-        cli \
-        dev \
-        redis \
-        common
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    libgmp-dev \
+    libxml2-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libpq-dev \
+    libldap2-dev \
+    libicu-dev \
+    libmagickwand-dev \
+    libwebp-dev \
+    libfreetype6-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install \
+    zip \
+    gd \
+    intl \
+    opcache \
+    pdo \
+    pdo_mysql \
+    ldap \
+    bcmath \
+    gmp \
+    pcntl \
+    mbstring \
+    xml
+
+# Install imagick (PECL)
+RUN pecl install imagick && docker-php-ext-enable imagick
+
+# Install redis (PECL)
+RUN pecl install redis && docker-php-ext-enable redis
 
 WORKDIR /var/www/html
 RUN git clone https://github.com/robiinsyh/nxt-personal.git .
