@@ -48,12 +48,7 @@ pipeline{
 //Build Docker Image And Push to Dockerhub
        stage('build docker image'){
         steps{
-            script{
-                docker.withRegistry('https://index.docker.io/v1/', 'docker-creds') {
-                    def nxtApp = docker.build("$DOCKER_IMAGE:$env.BUILD_NUMBER", "--cpus=2 --memory=4g $DOCKER_PATH")
-                    nxtApp.push()
-            }
-        }
+            sh 'docker buildx build --platform linux/amd64 -t $DOCKER_IMAGE:$DOCKER_TAG $DOCKER_PATH --load'
        }       
     }
 }
