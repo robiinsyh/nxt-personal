@@ -38,12 +38,21 @@ pipeline{
             }
        }
 //wait for quality gate result
-//       stage('Quality Gate'){
-//            steps{
-//                timeout(time: 1, unit: 'HOURS'){
-//                    waitForQualityGate abortPipeline: true
-//                }
-//            }
-//       }
-}
+       stage('Quality Gate'){
+            steps{
+                timeout(time: 1, unit: 'HOURS'){
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+       }
+
+       stage('Build Docker Image'){
+            steps{
+                script{
+                    def nxtApp = docker.build("$DOCKER_IMAGE:$DOCKER_TAG", "$DOCKER_PATH")
+                    nxtApp.push()
+                }
+            }
+       }
+    }
 }
