@@ -5,7 +5,6 @@ pipeline{
         DOCKER_IMAGE = 'robi741/nxt-app'
         DOCKER_TAG = 'latest'
         DOCKER_PATH = 'containerization/nxt-app/.'
-        DOCKER_BUILDKIT = "0"
     }
     stages{
         stage('Fetch Code'){
@@ -49,10 +48,12 @@ pipeline{
        stage('Build Docker Image'){
             steps{
                 script{
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-creds'){
                     def nxtApp = docker.build("$DOCKER_IMAGE:$DOCKER_TAG", "$DOCKER_PATH")
-                    nxtApp.push()
+                    nxtApp.push(echo "docker image pusher successfully")
                 }
             }
        }
     }
+}
 }
