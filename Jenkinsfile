@@ -50,7 +50,7 @@ pipeline{
                 script{
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-creds'){
                     def nxtApp = docker.build("$DOCKER_IMAGE:$DOCKER_TAG", "$DOCKER_PATH")
-                    nxtApp.push(echo "docker image pusher successfully")
+                    nxtApp.push()
                 }
             }
        }
