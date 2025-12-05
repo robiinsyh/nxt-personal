@@ -48,7 +48,10 @@ pipeline{
 //Build Docker Image And Push to Dockerhub
        stage('build docker image'){
         steps{
-            sh 'docker buildx build --platform linux/amd64 -t $DOCKER_IMAGE:$DOCKER_TAG $DOCKER_PATH --load'
+            script{
+                def nxtApp = sh ('docker build -t $DOCKER_IMAGE:$DOCKER_TAG $DOCKER_PATH')
+                nxtApp.push()
+            }
        }       
     }
 }
