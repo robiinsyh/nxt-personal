@@ -15,7 +15,7 @@ pipeline{
 
         stage('Build Message'){
             steps{
-                echo "Building Nextcloud Personal Edition Docker Image"
+                echo "Building Nextcloud Personal Edition Docker Image."
             }
         }
        stage('Sonarqube Anlysis'){
