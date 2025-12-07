@@ -29,7 +29,12 @@ RUN docker-php-ext-install \
     gmp \
     pcntl \
     mbstring \
-    xml
+    xml \
+    curl \
+    intl \
+    dev \
+    xmlrpc \
+    libmagickcore-6.q16-7-extra
 
 # Install imagick (PECL)
 RUN pecl install imagick && docker-php-ext-enable imagick
