@@ -3,7 +3,7 @@ pipeline{
 
     environment{
         DOCKER_IMAGE = 'robi741/nxt-app'
-        DOCKER_TAG = 'latest'
+        DOCKER_TAG = "$BUILD_NUMBER"
         DOCKER_PATH = 'containerization/nxt-app/.'
     }
     stages{
