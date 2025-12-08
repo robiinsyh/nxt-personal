@@ -1,5 +1,5 @@
 FROM php:8.4-apache
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install nano -y \
     git \
     unzip \
     libzip-dev \
@@ -31,10 +31,9 @@ RUN docker-php-ext-install \
     mbstring \
     xml \
     curl \
-    intl \
     dev \
     xmlrpc \
-    libmagickcore-6.q16-7-extra
+    exif
 
 # Install imagick (PECL)
 RUN pecl install imagick && docker-php-ext-enable imagick
