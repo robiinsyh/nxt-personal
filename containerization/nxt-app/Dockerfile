@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install nano -y \
     libfreetype6-dev \
     pkg-config \
     libonig-dev \
+    ffmpeg \
+    imagemagick \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
