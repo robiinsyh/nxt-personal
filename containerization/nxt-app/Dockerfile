@@ -30,8 +30,6 @@ RUN docker-php-ext-install \
     pcntl \
     mbstring \
     xml \
-    curl \
-    dev \
     exif
 
 # Install imagick (PECL)
