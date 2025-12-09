@@ -12,9 +12,9 @@ services:
     restart: always
   
   nxt-app:
-    build:
-      context: ./containerization/nxt-app
-    image: nxt-app-image
+#    build:
+#      context: ./containerization/nxt-app
+    image: robi741/nxt-app:15
     container_name: nextcloud-app
     depends_on:
        - db
