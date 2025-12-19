@@ -12,12 +12,13 @@ services:
     restart: always
   
   nxt-app:
-#    build:
-#      context: ./containerization/nxt-app
-    image: robi741/nxt-app:15
+    build:
+      context: ./containerization/nxt-app
+    image: robi741/nxt-app
     container_name: nextcloud-app
     depends_on:
        - db
+       - nxt-redis
     environment:
         MYSQL_DATABASE: nextcloud
         MYSQL_USER: nextclouduser
@@ -38,6 +39,14 @@ services:
       - "8990:8990"
     restart: always
   
+  nxt-redis:
+    image: redis
+    container_name: nxt-redis
+    restart: always
+    volumes:
+      - /var/lib/redis:/usr/local/etc/redis
+    ports:
+      - "6379:6379"
 
 volumes:
   nxt-data:

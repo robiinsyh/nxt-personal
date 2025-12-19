@@ -6,12 +6,7 @@ permissions:
 on:
   schedule:
     - cron: "0 */6 * * *"   # cek setiap 6 jam
-  workflow_dispatch:
-    inputs:
-      force_update:
-        description: 'Force update even if the version is the same'
-        required: false
-        default: 'false'         # bisa jalankan manual
+  workflow_dispatch:         # bisa jalankan manual
 
 jobs:
   update-nextcloud:
@@ -43,12 +38,6 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          if [ "${{ github.event.inputs.force_update }}" = "true" ]; then
-            echo "Force update enabled"
-            echo "update_needed=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
           if [ "${{ steps.latest.outputs.version }}" = "${{ steps.current.outputs.version }}" ]; then
             echo "update_needed=false" >> $GITHUB_OUTPUT
           else
